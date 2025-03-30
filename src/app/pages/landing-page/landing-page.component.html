@@ -1,12 +1,9 @@
 <div class="carousel h-screen w-full">
-  <div
-    id="slide1"
-    class="carousel-item relative w-full bg-[url(https://picsum.photos/id/1/1024/768)] bg-cover"
-  >
-    <div
-      class="container mx-auto flex content-end items-center justify-between"
-    >
-      <a href="#slide3" class="btn btn-circle scroll-smooth">❮</a>
+  <div id="slide1" class="carousel-item relative w-full bg-[url(https://picsum.photos/id/1/1024/768)] bg-cover">
+    <div class="container mx-auto flex content-end items-center justify-between">
+      <a href="#slide3" class="btn btn-circle scroll-smooth">
+        <fa-icon [icon]="faAngleLeft"></fa-icon>
+      </a>
       <div class="card bg-base-100/80 w-lg shadow-sm">
         <div class="card-body">
           <h2 class="card-title">Coś mądrego</h2>
@@ -30,17 +27,16 @@
           </div>
         </div>
       </div>
-      <a href="#slide2" class="btn btn-circle scroll-smooth">❯</a>
+      <a href="#slide2" class="btn btn-circle scroll-smooth">
+        <fa-icon [icon]="faAngleRight"></fa-icon>
+      </a>
     </div>
   </div>
-  <div
-    id="slide2"
-    class="carousel-item relative w-full bg-[url(https://picsum.photos/id/2/1024/768)] bg-cover"
-  >
-    <div
-      class="container mx-auto flex content-end items-center justify-between"
-    >
-      <a href="#slide1" class="btn btn-circle scroll-smooth">❮</a>
+  <div id="slide2" class="carousel-item relative w-full bg-[url(https://picsum.photos/id/2/1024/768)] bg-cover">
+    <div class="container mx-auto flex content-end items-center justify-between">
+      <a href="#slide1" class="btn btn-circle scroll-smooth">
+        <fa-icon [icon]="faAngleLeft"></fa-icon>
+      </a>
       <div class="card bg-base-100/50 w-lg shadow-sm">
         <div class="card-body">
           <h2 class="card-title">Coś szybkiego</h2>
@@ -64,17 +60,16 @@
           </div>
         </div>
       </div>
-      <a href="#slide3" class="btn btn-circle scroll-smooth">❯</a>
+      <a href="#slide3" class="btn btn-circle scroll-smooth">
+        <fa-icon [icon]="faAngleRight"></fa-icon>
+      </a>
     </div>
   </div>
-  <div
-    id="slide3"
-    class="carousel-item relative w-full bg-[url(https://picsum.photos/id/3/1024/768)] bg-cover"
-  >
-    <div
-      class="container mx-auto flex content-end items-center justify-between"
-    >
-      <a href="#slide2" class="btn btn-circle scroll-smooth">❮</a>
+  <div id="slide3" class="carousel-item relative w-full bg-[url(https://picsum.photos/id/3/1024/768)] bg-cover">
+    <div class="container mx-auto flex content-end items-center justify-between">
+      <a href="#slide2" class="btn btn-circle scroll-smooth">
+        <fa-icon [icon]="faAngleLeft"></fa-icon>
+      </a>
       <div class="card bg-base-100/50 w-lg shadow-sm">
         <div class="card-body">
           <h2 class="card-title">Coś fajnego</h2>
@@ -98,7 +93,9 @@
           </div>
         </div>
       </div>
-      <a href="#slide1" class="btn btn-circle scroll-smooth">❯</a>
+      <a href="#slide1" class="btn btn-circle scroll-smooth">
+        <fa-icon [icon]="faAngleRight"></fa-icon>
+      </a>
     </div>
   </div>
 </div>
@@ -145,18 +142,20 @@
 
     <div class="mx-4 w-md">
       <fieldset class="fieldset">
-        <label class="fieldset-label">Imie i Nazwisko</label>
+        <label class="fieldset-label">
+          Imie i Nazwisko
+          <fa-icon [icon]="faAsterisk"></fa-icon>
+        </label>
         <input type="text" class="input w-full" placeholder="Imie i Nazwisko" />
 
-        <label class="fieldset-label">E-mail</label>
+        <label class="fieldset-label">
+          E-mail
+          <fa-icon [icon]="faAsterisk"></fa-icon>
+        </label>
         <input type="email" class="input w-full" placeholder="E-mail" />
 
         <label class="fieldset-label">Pytanie</label>
-        <textarea
-          type="text"
-          class="textarea h-40 w-full"
-          placeholder="Pytanie"
-        ></textarea>
+        <textarea type="text" class="textarea h-40 w-full" placeholder="Pytanie"></textarea>
 
         <button class="btn btn-neutral mt-4">Ślij</button>
       </fieldset>
@@ -176,11 +175,7 @@
           <div class="mask mask-star" aria-label="2 star"></div>
           <div class="mask mask-star" aria-label="3 star"></div>
           <div class="mask mask-star" aria-label="4 star"></div>
-          <div
-            class="mask mask-star"
-            aria-label="5 star"
-            aria-current="true"
-          ></div>
+          <div class="mask mask-star" aria-label="5 star" aria-current="true"></div>
         </div>
         <div class="text-center">Alex Turner</div>
       </div>
@@ -196,11 +191,7 @@
           <div class="mask mask-star" aria-label="2 star"></div>
           <div class="mask mask-star" aria-label="3 star"></div>
           <div class="mask mask-star" aria-label="4 star"></div>
-          <div
-            class="mask mask-star"
-            aria-label="5 star"
-            aria-current="true"
-          ></div>
+          <div class="mask mask-star" aria-label="5 star" aria-current="true"></div>
         </div>
         <div class="text-center">Dolly Parton</div>
       </div>
@@ -214,11 +205,7 @@
           <div class="mask mask-star" aria-label="2 star"></div>
           <div class="mask mask-star" aria-label="3 star"></div>
           <div class="mask mask-star" aria-label="4 star"></div>
-          <div
-            class="mask mask-star"
-            aria-label="5 star"
-            aria-current="true"
-          ></div>
+          <div class="mask mask-star" aria-label="5 star" aria-current="true"></div>
         </div>
         <div class="text-center">James Blake</div>
       </div>
