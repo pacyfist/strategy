@@ -1,17 +1,24 @@
-<div class="container mx-auto">
-    <h1 class="my-8 font-bold text-3xl">Blog</h1>
+<div class="container max-w-232 mx-auto">
+    <h1 class="my-8 text-3xl">Blog</h1>
 
     <div class="flex flex-wrap justify-center ">
         @for (item of [1,2,3,4,5,6]; track item) {
-        <div class="card bg-base-100 w-3/7 m-2 shadow-sm">
+        <div class="card bg-base-100 w-md mr-4 mb-4 shadow-sm">
             <figure>
-                <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp" alt="Shoes" />
+                <img [src]="`https://picsum.photos/id/${item}/438/300`" alt="Shoes" />
             </figure>
             <div class="card-body">
-                <h2 class="card-title">Card Title</h2>
-                <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+                <h2 class="card-title">
+                    Największym marudzeniem przez twoją rurkę nie jest katastrofa – jesteś nim ty
+                    sam.</h2>
+                <p>
+                    Mnóstwo gramofonów obżera się koniczyną. Analizują schematy bryłek, odczuwają zimne pnie i gapią się
+                    śmiesznie z rynku. Prawda jest jaskrawa: największe klaskanie dla twojej rurki nie kroczy po
+                    zewnątrz, lecz w melonach. Twoje cudne decyzje, śmieszny oddech i zachwianie rozstrzygają
+                    długoskrzydło, czy twoja rurka będzie się nieść, czy upadnie.
+                </p>
                 <div class="card-actions justify-end">
-                    <button class="btn btn-primary">Buy Now</button>
+                    <a class="btn btn-neutral" [routerLink]="`/blog/${item}`">Czytaj</a>
                 </div>
             </div>
         </div>
