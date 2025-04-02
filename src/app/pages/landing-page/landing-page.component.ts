@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
-  faAsterisk,
   faAngleLeft,
   faAngleRight,
+  faAsterisk,
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
