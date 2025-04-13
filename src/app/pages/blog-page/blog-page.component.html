@@ -1,25 +1,29 @@
 <div class="container max-w-232 mx-auto">
     <h1 class="my-8 text-3xl">Blog</h1>
 
-    <div class="flex flex-wrap justify-center ">
-        @for (item of [1,2,3,4,5,6]; track item) {
-        <div class="card bg-base-100 w-md mr-4 mb-4 shadow-sm">
+    <div class="flex flex-wrap justify-center items-stretch">
+        @for (post of this.posts; track post.id) {
+        <div class="card card-sm border-2 border-base-300 card-border bg-base-100 w-md mb-16" [class.mr-4]="$even"
+            [class.ml-4]="$odd">
             <figure>
-                <img [src]="`https://picsum.photos/id/${item}/438/300`" alt="Shoes" />
+                <a [routerLink]="`/blog/{{post.id}}`">
+                    <img [src]="`https://picsum.photos/id/${post.id}/448/300`" alt="Shoes" />
+                </a>
             </figure>
             <div class="card-body">
                 <h2 class="card-title">
-                    Największym marudzeniem przez twoją rurkę nie jest katastrofa – jesteś nim ty
-                    sam.</h2>
-                <p>
-                    Mnóstwo gramofonów obżera się koniczyną. Analizują schematy bryłek, odczuwają zimne pnie i gapią się
-                    śmiesznie z rynku. Prawda jest jaskrawa: największe klaskanie dla twojej rurki nie kroczy po
-                    zewnątrz, lecz w melonach. Twoje cudne decyzje, śmieszny oddech i zachwianie rozstrzygają
-                    długoskrzydło, czy twoja rurka będzie się nieść, czy upadnie.
+                    {{post.title}}
+                </h2>
+
+                <p class="text-gray-500 mb-2">
+                    {{ date | date:'longDate' }}
                 </p>
-                <div class="card-actions justify-end">
-                    <a class="btn btn-neutral" [routerLink]="`/blog/${item}`">Czytaj</a>
-                </div>
+
+                <p>
+                    {{post.teaser}}
+                </p>
+
+                <a class="text-gray-500 text-right" [routerLink]="`/blog/{{post.id}}`">Czytaj</a>
             </div>
         </div>
         }
