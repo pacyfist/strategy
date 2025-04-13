@@ -1,10 +1,12 @@
 import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faAnglesRight } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-blog-page',
-  imports: [RouterLink, DatePipe],
+  imports: [RouterLink, DatePipe, FontAwesomeModule],
   templateUrl: './blog-page.component.html',
   styleUrl: './blog-page.component.css',
 })
@@ -85,4 +87,6 @@ export class BlogPageComponent {
         'Te piksele pamiętają czasy Windowsa 95 i diskmana. Dziś żyją na emeryturze w starym monitorze CRT. Opowiadają, jak to było, gdy rozdzielczość nie bolała.',
     },
   ];
+
+  faAnglesRight = faAnglesRight;
 }
