@@ -10,9 +10,9 @@
         na treści, które nie mają sensu, ale mają duszę.
     </p>
 
-    <div class="flex flex-wrap items-stretch justify-evenly">
+    <div class="flex flex-wrap gap-y-16 items-stretch justify-around">
         @for (post of this.posts(); track post.id) {
-        <div class="card card-sm border-base-300 card-border bg-base-100 mb-16 w-md border-2">
+        <div class="card card-sm border-base-300 card-border bg-base-100 w-md border-2">
             <figure>
                 <a [routerLink]="`/blog/${post.id}`">
                     <img [src]="`https://picsum.photos/id/${post.id}/448/300`" alt="Shoes" />
