@@ -4,6 +4,7 @@ import {
   faAngleLeft,
   faAngleRight,
   faAsterisk,
+  faLink,
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -17,4 +18,5 @@ export class LandingPageComponent {
   faAsterisk = faAsterisk;
   faAngleLeft = faAngleLeft;
   faAngleRight = faAngleRight;
+  faLink = faLink;
 }
