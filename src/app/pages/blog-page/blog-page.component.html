@@ -1,50 +1,57 @@
 <div class="container mx-auto">
-    <h1 class="my-8 px-12 text-3xl">Blog ze świata strategii</h1>
+  <h1 class="my-8 px-12 text-3xl">Blog ze świata strategii</h1>
 
-    <p class="mb-12 px-12 text-sm text-gray-500">
-        Na fioletowym parapecie siedział żółty balon filozoficznie rozważający sens
-        kiszonego ogórka w kontekście międzygalaktycznych podróży chomików. Blog
-        ten, jak puchaty jednorożec w kapciach, dryfuje po oceanie pomysłów, gdzie
-        każda litera tańczy sambę z przecinkiem. Gdy cebula śpiewa serenady do
-        tostera, wiesz, że jesteś we właściwym miejscu. Zapnij pasy i przygotuj się
-        na treści, które nie mają sensu, ale mają duszę.
-    </p>
+  <p class="mb-12 px-12 text-sm text-gray-500">
+    Na fioletowym parapecie siedział żółty balon filozoficznie rozważający sens
+    kiszonego ogórka w kontekście międzygalaktycznych podróży chomików. Blog
+    ten, jak puchaty jednorożec w kapciach, dryfuje po oceanie pomysłów, gdzie
+    każda litera tańczy sambę z przecinkiem. Gdy cebula śpiewa serenady do
+    tostera, wiesz, że jesteś we właściwym miejscu. Zapnij pasy i przygotuj się
+    na treści, które nie mają sensu, ale mają duszę.
+  </p>
 
-    <div class="flex flex-wrap gap-y-16 items-stretch justify-evenly mb-16">
-        @for (post of this.page(); track post.id) {
-        <div class="card card-sm border-base-300 card-border bg-base-100 lg:w-md xl:w-xl 2xl:w-md border-2">
-            <figure>
-                <a [routerLink]="`/blog/${post.id}`" class="w-full">
-                    <img [src]="`https://picsum.photos/id/${post.id}/764/573`" class="w-full h-75 object-cover"
-                        alt="Shoes" />
-                </a>
-            </figure>
-            <div class="card-body">
-                <a [routerLink]="`/blog/${post.id}`">
-                    <h2 class="card-title">
-                        {{ post.title }}
-                    </h2>
-                </a>
+  <div class="mb-16 flex flex-wrap items-stretch justify-evenly gap-y-16">
+    @for (post of this.page(); track post.id) {
+      <div
+        class="card card-sm border-base-300 card-border bg-base-100 border-2 lg:w-md xl:w-xl 2xl:w-md"
+      >
+        <figure>
+          <a [routerLink]="`/blog/${post.id}`" class="w-full">
+            <img
+              [src]="`https://picsum.photos/id/${post.id}/764/573`"
+              class="h-75 w-full object-cover"
+              alt="Shoes"
+            />
+          </a>
+        </figure>
+        <div class="card-body">
+          <a [routerLink]="`/blog/${post.id}`">
+            <h2 class="card-title">
+              {{ post.title }}
+            </h2>
+          </a>
 
-                <p class="mb-2 text-gray-500">
-                    {{ post.date | date: "longDate" }}
-                </p>
+          <p class="mb-2 text-gray-500">
+            {{ post.date | date: "longDate" }}
+          </p>
 
-                <p>
-                    {{ post.teaser }}
-                </p>
+          <p>
+            {{ post.teaser }}
+          </p>
 
-                <div class="card-actions justify-end">
-                    <a class="text-gray-500" [routerLink]="`/blog/${post.id}`">
-                        Czytaj <fa-icon [icon]="faAnglesRight" />
-                    </a>
-                </div>
-            </div>
+          <div class="card-actions justify-end">
+            <a class="text-gray-500" [routerLink]="`/blog/${post.id}`">
+              Czytaj <fa-icon [icon]="faAnglesRight" />
+            </a>
+          </div>
         </div>
-        }
-    </div>
+      </div>
+    }
+  </div>
 
-    <app-paginator [pageCount]="this.pageCount()" [pageNumber]="this.pageNumber()"
-        (pageChanged)="this.pageNumber.set($event)" />
-
+  <app-paginator
+    [pageCount]="this.pageCount()"
+    [pageNumber]="this.pageNumber()"
+    (pageChanged)="this.pageNumber.set($event)"
+  />
 </div>
