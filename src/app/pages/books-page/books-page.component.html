@@ -1,5 +1,5 @@
 <div class="container mx-auto">
-    <h1 class="my-8 px-4 text-3xl">Blog ze świata strategii</h1>
+    <h1 class="my-8 px-4 text-3xl">Moja księgarnia</h1>
 
     <p class="mb-12 px-4 text-sm text-gray-500">
         Na fioletowym parapecie siedział żółty balon filozoficznie rozważający sens
@@ -12,15 +12,14 @@
 
     <div class="flex flex-wrap gap-y-16 items-stretch justify-evenly mb-16">
         @for (post of this.books(); track post.id) {
-        <div class="card card-sm border-base-300 card-border bg-base-100 lg:w-md xl:w-xl 2xl:w-md border-2">
+        <div class="card card-sm border-base-300 card-border bg-base-100 w-xs border-2">
             <figure>
-                <a [routerLink]="`/blog/${post.id}`" class="w-full">
-                    <img [src]="`https://picsum.photos/id/${post.id}/764/573`" class="w-full h-75 object-cover"
-                        alt="Shoes" />
+                <a [routerLink]="`/books/${post.id}`">
+                    <img [src]="`https://picsum.photos/id/${post.id}/768/1024`" alt="Shoes" />
                 </a>
             </figure>
             <div class="card-body">
-                <a [routerLink]="`/blog/${post.id}`">
+                <a [routerLink]="`/books/${post.id}`">
                     <h2 class="card-title">
                         {{ post.title }}
                     </h2>
@@ -35,7 +34,7 @@
                 </p>
 
                 <div class="card-actions justify-end">
-                    <a class="text-gray-500" [routerLink]="`/blog/${post.id}`">
+                    <a class="text-gray-500" [routerLink]="`/books/${post.id}`">
                         Czytaj <fa-icon [icon]="faAnglesRight" />
                     </a>
                 </div>

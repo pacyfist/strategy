@@ -83,12 +83,5 @@ export class BlogService {
       teaser:
         'Czy można ugotować zupę, używając jedynie siły woli? Okazuje się, że nie – ale kuchnia pachnie filozofią. Jeden tester doznał oświecenia, zanim zagotowała się woda.',
     },
-    {
-      id: 12,
-      date: new Date(99, 6, 4),
-      title: 'Ekskluzywny wywiad z pikselami z roku 1998',
-      teaser:
-        'Te piksele pamiętają czasy Windowsa 95 i diskmana. Dziś żyją na emeryturze w starym monitorze CRT. Opowiadają, jak to było, gdy rozdzielczość nie bolała.',
-    },
   ]);
 }
