@@ -1,0 +1,13 @@
+<div class="flex justify-center">
+  <div class="join">
+    @for (number of this.pageNumbers(); track number) {
+      <button
+        class="join-item btn"
+        [class.btn-active]="this.pageNumber() === number"
+        (click)="changePage(number)"
+      >
+        {{ number + 1 }}
+      </button>
+    }
+  </div>
+</div>

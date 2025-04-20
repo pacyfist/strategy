@@ -6,10 +6,11 @@ import { faAnglesRight } from '@fortawesome/free-solid-svg-icons';
 import { BlogService } from '../../services/blog.service';
 import { filter, map } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { PaginatorComponent } from '../../components/paginator/paginator.component';
 
 @Component({
   selector: 'app-blog-page',
-  imports: [RouterLink, DatePipe, FontAwesomeModule],
+  imports: [RouterLink, DatePipe, FontAwesomeModule, PaginatorComponent],
   templateUrl: './blog-page.component.html',
   styleUrl: './blog-page.component.css',
 })
@@ -28,7 +29,6 @@ export class BlogPageComponent {
   readonly pageCount = computed(() =>
     Math.ceil(this.posts().length / this.pageSize()),
   );
-  readonly pageNumbers = computed(() => [...Array(this.pageCount()).keys()]);
 
   readonly page = computed(() =>
     this.posts().slice(this.pageStart(), this.pageEnd()),

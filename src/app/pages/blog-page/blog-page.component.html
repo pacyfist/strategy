@@ -44,12 +44,7 @@
         }
     </div>
 
-    <div class="flex justify-center">
-        <div class="join">
-            @for(number of this.pageNumbers(); track number ){
-            <button class="join-item btn" [class.btn-active]="this.pageNumber() === number"
-                (click)="this.pageNumber.set(number)">{{number+1}}</button>
-            }
-        </div>
-    </div>
+    <app-paginator [pageCount]="this.pageCount()" [pageNumber]="this.pageNumber()"
+        (pageChanged)="this.pageNumber.set($event)" />
+
 </div>
