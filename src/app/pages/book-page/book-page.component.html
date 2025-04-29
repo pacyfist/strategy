@@ -1,0 +1,20 @@
+<div class="container mx-auto">
+    <h1 class="my-8 px-4 text-3xl">Moja księgarnia</h1>
+
+    <p class="mb-12 px-4 text-sm text-gray-500">
+        Na fioletowym parapecie siedział żółty balon filozoficznie rozważający sens
+        kiszonego ogórka w kontekście międzygalaktycznych podróży chomików. Blog
+        ten, jak puchaty jednorożec w kapciach, dryfuje po oceanie pomysłów, gdzie
+        każda litera tańczy sambę z przecinkiem. Gdy cebula śpiewa serenady do
+        tostera, wiesz, że jesteś we właściwym miejscu. Zapnij pasy i przygotuj się
+        na treści, które nie mają sensu, ale mają duszę.
+    </p>
+
+    @if(loading())
+    {
+    <div class="skeleton w-full aspect-[1/1.4142]"></div>
+    }
+
+    <embed src="/sample.pdf" class="w-full aspect-[1/1.4142]" (load)="loading.set(false)"
+        [class.collapse]="loading()" />
+</div>
