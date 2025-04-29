@@ -1,10 +1,10 @@
-import { computed, Injectable } from '@angular/core';
+import { computed, Injectable, signal } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BlogService {
-  posts = computed(() => [
+  readonly data = computed(() => [
     {
       id: 1,
       date: new Date(99, 5, 24),
@@ -84,4 +84,22 @@ export class BlogService {
         'Czy można ugotować zupę, używając jedynie siły woli? Okazuje się, że nie – ale kuchnia pachnie filozofią. Jeden tester doznał oświecenia, zanim zagotowała się woda.',
     },
   ]);
+
+  readonly pageNumber = signal<number>(0);
+  readonly pageSize = signal<number>(6);
+
+  private readonly pageStart = computed(
+    () => this.pageNumber() * this.pageSize(),
+  );
+  private readonly pageFinish = computed(
+    () => this.pageStart() + this.pageSize(),
+  );
+
+  readonly page = computed(() =>
+    this.data().slice(this.pageStart(), this.pageFinish()),
+  );
+
+  readonly pageCount = computed(() =>
+    Math.ceil(this.data().length / this.pageSize()),
+  );
 }

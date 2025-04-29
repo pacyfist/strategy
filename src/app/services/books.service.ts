@@ -1,10 +1,10 @@
-import { computed, Injectable } from '@angular/core';
+import { computed, Injectable, signal } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BooksService {
-  posts = computed(() => [
+  public readonly data = computed(() => [
     {
       id: 101,
       date: new Date(99, 5, 24),
@@ -91,4 +91,22 @@ export class BooksService {
         'Te piksele pamiętają czasy Windowsa 95 i diskmana. Dziś żyją na emeryturze w starym monitorze CRT. Opowiadają, jak to było, gdy rozdzielczość nie bolała.',
     },
   ]);
+
+  readonly pageNumber = signal<number>(0);
+  readonly pageSize = signal<number>(12);
+
+  private readonly pageStart = computed(
+    () => this.pageNumber() * this.pageSize(),
+  );
+  private readonly pageFinish = computed(
+    () => this.pageStart() + this.pageSize(),
+  );
+
+  readonly page = computed(() =>
+    this.data().slice(this.pageStart(), this.pageFinish()),
+  );
+
+  readonly pageCount = computed(() =>
+    Math.ceil(this.data().length / this.pageSize()),
+  );
 }

@@ -1,20 +1,19 @@
-import { Component, computed, inject } from '@angular/core';
-import { BlogService } from '../../services/blog.service';
-import { faAnglesRight } from '@fortawesome/free-solid-svg-icons';
-import { RouterLink } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faAnglesRight } from '@fortawesome/free-solid-svg-icons';
+import { PaginatorComponent } from '../../components/paginator/paginator.component';
 import { BooksService } from '../../services/books.service';
 
 @Component({
   selector: 'app-books-page',
-  imports: [RouterLink, DatePipe, FontAwesomeModule],
+  imports: [RouterLink, DatePipe, FontAwesomeModule, PaginatorComponent],
   templateUrl: './books-page.component.html',
   styleUrl: './books-page.component.css',
 })
 export class BooksPageComponent {
   readonly booksService = inject(BooksService);
-  readonly books = computed(() => this.booksService.posts());
 
   readonly faAnglesRight = faAnglesRight;
 }

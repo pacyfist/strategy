@@ -18,21 +18,5 @@ export class BlogPageComponent {
   readonly route = inject(ActivatedRoute);
   readonly blogService = inject(BlogService);
 
-  readonly pageNumber = signal<number>(0);
-  readonly pageSize = signal<number>(4);
-
-  readonly pageStart = computed(() => this.pageNumber() * this.pageSize());
-  readonly pageEnd = computed(() => this.pageStart() + this.pageSize());
-
-  readonly posts = computed(() => this.blogService.posts());
-
-  readonly pageCount = computed(() =>
-    Math.ceil(this.posts().length / this.pageSize()),
-  );
-
-  readonly page = computed(() =>
-    this.posts().slice(this.pageStart(), this.pageEnd()),
-  );
-
   readonly faAnglesRight = faAnglesRight;
 }

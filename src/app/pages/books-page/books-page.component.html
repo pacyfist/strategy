@@ -10,8 +10,8 @@
     na treści, które nie mają sensu, ale mają duszę.
   </p>
 
-  <div class="mb-16 flex flex-wrap items-stretch justify-evenly gap-y-16">
-    @for (post of this.books(); track post.id) {
+  <div class="mb-16 flex flex-wrap items-stretch justify-evenly gap-y-16 px-4">
+    @for (post of this.booksService.page(); track post.id) {
       <div
         class="card card-sm border-base-300 card-border bg-base-100 w-xs border-2"
       >
@@ -48,12 +48,9 @@
     }
   </div>
 
-  <div class="flex justify-center">
-    <div class="join">
-      <button class="join-item btn btn-active">1</button>
-      <button class="join-item btn">2</button>
-      <button class="join-item btn">3</button>
-      <button class="join-item btn">4</button>
-    </div>
-  </div>
+  <app-paginator
+    [pageCount]="this.booksService.pageCount()"
+    [pageNumber]="this.booksService.pageNumber()"
+    (pageChanged)="this.booksService.pageNumber.set($event)"
+  />
 </div>

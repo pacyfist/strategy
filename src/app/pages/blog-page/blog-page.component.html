@@ -10,8 +10,8 @@
     na treści, które nie mają sensu, ale mają duszę.
   </p>
 
-  <div class="mb-16 flex flex-wrap items-stretch justify-evenly gap-y-16">
-    @for (post of this.page(); track post.id) {
+  <div class="mb-16 flex flex-wrap items-stretch justify-evenly gap-y-16 px-12">
+    @for (post of this.blogService.page(); track post.id) {
       <div
         class="card card-sm border-base-300 card-border bg-base-100 border-2 lg:w-md xl:w-xl 2xl:w-md"
       >
@@ -50,8 +50,8 @@
   </div>
 
   <app-paginator
-    [pageCount]="this.pageCount()"
-    [pageNumber]="this.pageNumber()"
-    (pageChanged)="this.pageNumber.set($event)"
+    [pageCount]="this.blogService.pageCount()"
+    [pageNumber]="this.blogService.pageNumber()"
+    (pageChanged)="this.blogService.pageNumber.set($event)"
   />
 </div>
