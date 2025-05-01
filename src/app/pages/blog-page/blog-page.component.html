@@ -10,6 +10,11 @@
     na treści, które nie mają sensu, ale mają duszę.
   </p>
 
+  <app-search
+    [value]="this.blogService.filter()"
+    (changed)="this.blogService.filter.set($event)"
+  />
+
   <div class="mb-16 flex flex-wrap items-stretch justify-evenly gap-y-16 px-12">
     @for (post of this.blogService.page(); track post.id) {
       <div

@@ -1,16 +1,21 @@
 import { DatePipe } from '@angular/common';
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faAnglesRight } from '@fortawesome/free-solid-svg-icons';
-import { BlogService } from '../../services/blog.service';
-import { filter, map } from 'rxjs';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { PaginatorComponent } from '../../components/paginator/paginator.component';
+import { SearchComponent } from '../../components/search/search.component';
+import { BlogService } from '../../services/blog.service';
 
 @Component({
   selector: 'app-blog-page',
-  imports: [RouterLink, DatePipe, FontAwesomeModule, PaginatorComponent],
+  imports: [
+    RouterLink,
+    DatePipe,
+    FontAwesomeModule,
+    PaginatorComponent,
+    SearchComponent,
+  ],
   templateUrl: './blog-page.component.html',
   styleUrl: './blog-page.component.css',
 })

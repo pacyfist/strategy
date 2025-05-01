@@ -1,0 +1,11 @@
+<div class="mb-16 flex justify-evenly">
+  <label class="input">
+    <fa-icon [icon]="faMagnifyingGlass" />
+    <input
+      type="search"
+      placeholder="Szukaj"
+      [value]="value()"
+      (keyup)="update($event)"
+    />
+  </label>
+</div>
