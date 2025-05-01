@@ -18,7 +18,7 @@
   <div class="mb-16 flex flex-wrap items-stretch justify-evenly gap-y-16 px-12">
     @for (post of this.blogService.page(); track post.id) {
       <div
-        class="card card-sm border-base-300 card-border bg-base-100 border-2 lg:w-md xl:w-xl 2xl:w-md"
+        class="card card-sm  rounded-none border-base-300 card-border bg-base-100 border-2 lg:w-md xl:w-xl 2xl:w-md"
       >
         <figure>
           <a [routerLink]="`/blog/${post.id}`" class="w-full">

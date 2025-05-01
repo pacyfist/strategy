@@ -10,14 +10,14 @@
     na treści, które nie mają sensu, ale mają duszę.
   </p>
 
+  <h2 class="my-8 px-4 text-xl">Darmowy fragment</h2>
+
   @if (loading()) {
-    <div class="skeleton aspect-[1/1.4142] w-full"></div>
+  <div class="skeleton aspect-[1/1.4142] w-full"></div>
   }
 
-  <embed
-    src="https://pdfobject.com/pdf/sample.pdf"
-    class="aspect-[1/1.4142] w-full"
-    (load)="loading.set(false)"
-    [class.collapse]="loading()"
-  />
+  <embed src="https://pdfobject.com/pdf/sample.pdf" class="aspect-[1/1.4142] w-full" (load)="loading.set(false)"
+    [class.collapse]="loading()" />
+
+  <h2 class="my-8 px-4 text-xl">Kup całość</h2>
 </div>
