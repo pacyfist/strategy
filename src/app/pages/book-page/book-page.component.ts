@@ -7,6 +7,5 @@ import { Component, signal } from '@angular/core';
   styleUrl: './book-page.component.css',
 })
 export class BookPageComponent {
-
   readonly loading = signal<boolean>(true);
 }
