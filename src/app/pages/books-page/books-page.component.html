@@ -10,6 +10,11 @@
     na treści, które nie mają sensu, ale mają duszę.
   </p>
 
+  <app-search
+    [value]="this.booksService.filter()"
+    (changed)="this.booksService.filter.set($event)"
+  />
+
   <div class="mb-16 flex flex-wrap items-stretch justify-evenly gap-y-16 px-4">
     @for (post of this.booksService.page(); track post.id) {
       <div

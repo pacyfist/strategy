@@ -1,10 +1,10 @@
-import { computed, Injectable, signal } from '@angular/core';
+import { computed, effect, Injectable, signal, untracked } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BooksService {
-  public readonly data = computed(() => [
+  public readonly rawData = computed(() => [
     {
       id: 101,
       date: new Date(99, 5, 24),
@@ -92,8 +92,20 @@ export class BooksService {
     },
   ]);
 
+  readonly filter = signal<string>('');
+
+  readonly data = computed(() => {
+    const search = this.filter().toLowerCase();
+
+    return this.rawData().filter(
+      (item) =>
+        item.title.toLowerCase().includes(search) ||
+        item.teaser.toLowerCase().includes(search),
+    );
+  });
+
   readonly pageNumber = signal<number>(0);
-  readonly pageSize = signal<number>(12);
+  readonly pageSize = signal<number>(6);
 
   private readonly pageStart = computed(
     () => this.pageNumber() * this.pageSize(),
@@ -109,4 +121,22 @@ export class BooksService {
   readonly pageCount = computed(() =>
     Math.ceil(this.data().length / this.pageSize()),
   );
+
+  constructor() {
+    // Ensure the page number is within the valid range
+    effect(() => {
+      const pageCount = this.pageCount();
+
+      untracked(() => {
+        const currentPage = this.pageNumber();
+        const lastPage = pageCount - 1;
+        if (currentPage < 0) {
+          this.pageNumber.set(0);
+        }
+        if (currentPage > lastPage) {
+          this.pageNumber.set(lastPage);
+        }
+      });
+    });
+  }
 }
