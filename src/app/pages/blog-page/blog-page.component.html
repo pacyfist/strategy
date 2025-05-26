@@ -1,32 +1,25 @@
 <div class="container mx-auto">
-  <h1 class="my-8 px-12 text-3xl">Blog ze świata strategii</h1>
+  <div class="px-6">
+    <h1 class="my-8 text-3xl">Blog ze świata strategii</h1>
 
-  <p class="mb-12 px-12 text-sm text-gray-500">
-    Na fioletowym parapecie siedział żółty balon filozoficznie rozważający sens
-    kiszonego ogórka w kontekście międzygalaktycznych podróży chomików. Blog
-    ten, jak puchaty jednorożec w kapciach, dryfuje po oceanie pomysłów, gdzie
-    każda litera tańczy sambę z przecinkiem. Gdy cebula śpiewa serenady do
-    tostera, wiesz, że jesteś we właściwym miejscu. Zapnij pasy i przygotuj się
-    na treści, które nie mają sensu, ale mają duszę.
-  </p>
+    <p class="mb-12 text-sm text-gray-500">
+      Na fioletowym parapecie siedział żółty balon filozoficznie rozważający sens
+      kiszonego ogórka w kontekście międzygalaktycznych podróży chomików. Blog
+      ten, jak puchaty jednorożec w kapciach, dryfuje po oceanie pomysłów, gdzie
+      każda litera tańczy sambę z przecinkiem. Gdy cebula śpiewa serenady do
+      tostera, wiesz, że jesteś we właściwym miejscu. Zapnij pasy i przygotuj się
+      na treści, które nie mają sensu, ale mają duszę.
+    </p>
 
-  <app-search
-    [value]="this.blogService.filter()"
-    (changed)="this.blogService.filter.set($event)"
-  />
 
-  <div class="mb-16 flex flex-wrap items-stretch justify-evenly gap-y-16 px-12">
-    @for (post of this.blogService.page(); track post.id) {
-      <div
-        class="card card-sm  rounded-none border-base-300 card-border bg-base-100 border-2 lg:w-md xl:w-xl 2xl:w-md"
-      >
+    <app-search [value]="this.blogService.filter()" (changed)="this.blogService.filter.set($event)" />
+
+    <div class="mb-16 flex flex-wrap items-stretch justify-evenly gap-y-16">
+      @for (post of this.blogService.page(); track post.id) {
+      <div class="card card-sm  rounded-none border-base-300 card-border bg-base-100 border-2 lg:w-md xl:w-xl 2xl:w-md">
         <figure>
           <a [routerLink]="`/blog/${post.id}`" class="w-full">
-            <img
-              [src]="`https://picsum.photos/id/${post.id}/764/573`"
-              class="h-75 w-full object-cover"
-              alt="Shoes"
-            />
+            <img [src]="`https://picsum.photos/id/${post.id}/764/573`" class="h-75 w-full object-cover" alt="Shoes" />
           </a>
         </figure>
         <div class="card-body">
@@ -51,12 +44,11 @@
           </div>
         </div>
       </div>
-    }
-  </div>
+      }
+    </div>
 
-  <app-paginator
-    [pageCount]="this.blogService.pageCount()"
-    [pageNumber]="this.blogService.pageNumber()"
-    (pageChanged)="this.blogService.pageNumber.set($event)"
-  />
+    <app-paginator [pageCount]="this.blogService.pageCount()" [pageNumber]="this.blogService.pageNumber()"
+      (pageChanged)="this.blogService.pageNumber.set($event)" />
+
+  </div>
 </div>

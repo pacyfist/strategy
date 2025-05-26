@@ -1,53 +1,51 @@
 <div class="container mx-auto max-w-232">
-  <h1 class="my-8 text-3xl">Skontaktuj się z nami!</h1>
+  <div class="px-6">
+    <h1 class="my-8 text-3xl">Skontaktuj się z nami!</h1>
 
-  <p class="mb-4">
-    Masz pytania, pomysł na współpracę, a może po prostu chcesz się przywitać?
-    Napisz do nas! Chętnie odpowiemy na Twoją wiadomość i pomożemy w każdej
-    sprawie. Wypełnij formularz, a my wrócimy do Ciebie tak szybko, jak to
-    możliwe.
-  </p>
+    <p class="mb-4">
+      Masz pytania, pomysł na współpracę, a może po prostu chcesz się przywitać?
+      Napisz do nas! Chętnie odpowiemy na Twoją wiadomość i pomożemy w każdej
+      sprawie. Wypełnij formularz, a my wrócimy do Ciebie tak szybko, jak to
+      możliwe.
+    </p>
 
-  <div class="mt-8 mb-12 flex justify-center">
-    <div class="mr-4 w-md">
-      <img src="https://picsum.photos/448/394" alt="random photo" />
+    <div class="mt-8 mb-12 flex gap-8 justify-center items-center flex-col md:flex-row">
+      <div class="w-full sm:w-md max-w-md">
+        <img src="https://picsum.photos/448/394" alt="random photo" />
+      </div>
+
+      <div class="w-full sm:w-md max-w-md">
+        <fieldset class="fieldset">
+          <label class="fieldset-label">
+            Imie i Nazwisko
+            <fa-icon [icon]="faAsterisk"></fa-icon>
+          </label>
+          <input type="text" class="input w-full" placeholder="Imie i Nazwisko" />
+
+          <label class="fieldset-label">
+            E-mail
+            <fa-icon [icon]="faAsterisk"></fa-icon>
+          </label>
+          <input type="email" class="input w-full" placeholder="E-mail" />
+
+          <label class="fieldset-label">Pytanie</label>
+          <textarea type="text" class="textarea h-40 w-full" placeholder="Pytanie"></textarea>
+
+          <button class="btn btn-neutral mt-4">Ślij</button>
+        </fieldset>
+      </div>
     </div>
 
-    <div class="ml-4 w-md">
-      <fieldset class="fieldset">
-        <label class="fieldset-label">
-          Imie i Nazwisko
-          <fa-icon [icon]="faAsterisk"></fa-icon>
-        </label>
-        <input type="text" class="input w-full" placeholder="Imie i Nazwisko" />
+    <p class="mb-4">
+      Dziękujemy za Twoją wiadomość! Otrzymaliśmy ją i już się nią zajmujemy. Nasz
+      zespół postara się odpowiedzieć najszybciej, jak to możliwe.
+    </p>
 
-        <label class="fieldset-label">
-          E-mail
-          <fa-icon [icon]="faAsterisk"></fa-icon>
-        </label>
-        <input type="email" class="input w-full" placeholder="E-mail" />
+    <p class="mb-4">
+      Jeśli wolisz bezpośredni kontakt, znajdziesz nas także pod telefonem lub
+      e-mailem.
+    </p>
 
-        <label class="fieldset-label">Pytanie</label>
-        <textarea
-          type="text"
-          class="textarea h-40 w-full"
-          placeholder="Pytanie"
-        ></textarea>
-
-        <button class="btn btn-neutral mt-4">Ślij</button>
-      </fieldset>
-    </div>
+    <p class="mb-4">Do usłyszenia!</p>
   </div>
-
-  <p class="mb-4">
-    Dziękujemy za Twoją wiadomość! Otrzymaliśmy ją i już się nią zajmujemy. Nasz
-    zespół postara się odpowiedzieć najszybciej, jak to możliwe.
-  </p>
-
-  <p class="mb-4">
-    Jeśli wolisz bezpośredni kontakt, znajdziesz nas także pod telefonem lub
-    e-mailem.
-  </p>
-
-  <p class="mb-4">Do usłyszenia!</p>
 </div>
