@@ -1,0 +1,23 @@
+<div class="navbar flex-col md:flex-row">
+  <div class="navbar-start w-auto sm:w-1/2 items-end">
+    <a class="btn btn-ghost text-xl" routerLink="/">Logo</a>
+
+    <a class="btn btn-ghost text-xl sm:hidden" (click)="collapsed.set(!collapsed())">
+      @if(collapsed()) {
+      <fa-icon [icon]="faChevronDown" />
+      } @else {
+      <fa-icon [icon]="faChevronUp" />
+      }
+    </a>
+  </div>
+  <div class="navbar-center flex-col sm:flex-row">
+    <a class="btn btn-ghost text-xl sm:flex" [class.hidden]="collapsed()" routerLink="/">Domowa</a>
+    <a class="btn btn-ghost text-xl sm:flex" [class.hidden]="collapsed()" routerLink="/about">O nas</a>
+    <a class="btn btn-ghost text-xl sm:flex" [class.hidden]="collapsed()" routerLink="/contact">Kontakt</a>
+    <a class="btn btn-ghost text-xl sm:flex" [class.hidden]="collapsed()" routerLink="/blog">Blog</a>
+    <a class="btn btn-ghost text-xl sm:flex" [class.hidden]="collapsed()" routerLink="/books">Książki</a>
+  </div>
+  <div class="navbar-end w-auto sm:w-1/2">
+    <a class="btn btn-ghost text-xl">Zapisz się</a>
+  </div>
+</div>
