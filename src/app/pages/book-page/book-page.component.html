@@ -1,23 +1,28 @@
 <div class="container mx-auto">
-  <h1 class="my-8 px-4 text-3xl">Moja księgarnia</h1>
+  <div class="m-4 p-4 bg-base-300">
+    <h1 class="mb-8 text-3xl">Moja księgarnia</h1>
 
-  <p class="mb-12 px-4 text-sm text-gray-500">
-    Na fioletowym parapecie siedział żółty balon filozoficznie rozważający sens
-    kiszonego ogórka w kontekście międzygalaktycznych podróży chomików. Blog
-    ten, jak puchaty jednorożec w kapciach, dryfuje po oceanie pomysłów, gdzie
-    każda litera tańczy sambę z przecinkiem. Gdy cebula śpiewa serenady do
-    tostera, wiesz, że jesteś we właściwym miejscu. Zapnij pasy i przygotuj się
-    na treści, które nie mają sensu, ale mają duszę.
-  </p>
+    <p class="mb-8 text-sm text-gray-500">
+      Na fioletowym parapecie siedział żółty balon filozoficznie rozważający sens
+      kiszonego ogórka w kontekście międzygalaktycznych podróży chomików. Blog
+      ten, jak puchaty jednorożec w kapciach, dryfuje po oceanie pomysłów, gdzie
+      każda litera tańczy sambę z przecinkiem. Gdy cebula śpiewa serenady do
+      tostera, wiesz, że jesteś we właściwym miejscu. Zapnij pasy i przygotuj się
+      na treści, które nie mają sensu, ale mają duszę.
+    </p>
 
-  <h2 class="my-8 px-4 text-xl">Darmowy fragment</h2>
+    <h2 class="my-8 text-xl">
+      <a href="sample.pdf">
+        Darmowy fragment <fa-icon [icon]="faDownload" />
+      </a>
+    </h2>
 
-  @if (loading()) {
-  <div class="skeleton aspect-[1/1.4142] w-full"></div>
-  }
+    @if (loading()) {
+    <div class="skeleton aspect-[1/1.4142] w-full"></div>
+    }
 
-  <embed src="https://pdfobject.com/pdf/sample.pdf" class="aspect-[1/1.4142] w-full" (load)="loading.set(false)"
-    [class.collapse]="loading()" />
+    <embed src="sample.pdf" class="aspect-[1/1.4142] w-full" (load)="loading.set(false)" [class.collapse]="loading()" />
 
-  <h2 class="my-8 px-4 text-xl">Kup całość</h2>
+    <h2 class="my-8 text-xl">Kup całość</h2>
+  </div>
 </div>
