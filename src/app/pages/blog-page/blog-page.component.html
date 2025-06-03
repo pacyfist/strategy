@@ -1,56 +1,68 @@
 <div class="container mx-auto">
-  <div class="m-4 p-4 bg-base-300">
+  <div class="bg-base-300 m-4 p-4">
     <h1 class="mb-8 text-3xl">Blog ze świata strategii</h1>
 
     <p class="mb-8 text-sm text-gray-500">
-      Na fioletowym parapecie siedział żółty balon filozoficznie rozważający sens
-      kiszonego ogórka w kontekście międzygalaktycznych podróży chomików. Blog
-      ten, jak puchaty jednorożec w kapciach, dryfuje po oceanie pomysłów, gdzie
-      każda litera tańczy sambę z przecinkiem. Gdy cebula śpiewa serenady do
-      tostera, wiesz, że jesteś we właściwym miejscu. Zapnij pasy i przygotuj się
-      na treści, które nie mają sensu, ale mają duszę.
+      Na fioletowym parapecie siedział żółty balon filozoficznie rozważający
+      sens kiszonego ogórka w kontekście międzygalaktycznych podróży chomików.
+      Blog ten, jak puchaty jednorożec w kapciach, dryfuje po oceanie pomysłów,
+      gdzie każda litera tańczy sambę z przecinkiem. Gdy cebula śpiewa serenady
+      do tostera, wiesz, że jesteś we właściwym miejscu. Zapnij pasy i przygotuj
+      się na treści, które nie mają sensu, ale mają duszę.
     </p>
 
     <div class="mb-8">
-      <app-search [value]="this.blogService.filter()" (changed)="this.blogService.filter.set($event)" />
+      <app-search
+        [value]="this.blogService.filter()"
+        (changed)="this.blogService.filter.set($event)"
+      />
     </div>
 
     <div class="mb-8 flex flex-wrap items-stretch justify-evenly gap-8">
       @for (post of this.blogService.page(); track post.id) {
-      <div class="card card-sm rounded-none bg-base-100 lg:w-md xl:w-xl 2xl:w-md">
-        <figure>
-          <a [routerLink]="`/blog/${post.id}`" class="w-full">
-            <img [src]="`https://picsum.photos/id/${post.id}/764/573`" class="h-75 w-full object-cover" alt="Shoes" />
-          </a>
-        </figure>
-        <div class="card-body">
-          <a [routerLink]="`/blog/${post.id}`">
-            <h2 class="card-title">
-              {{ post.title }}
-            </h2>
-          </a>
-
-          <p class="mb-2 text-gray-500">
-            {{ post.date | date: "longDate" }}
-          </p>
-
-          <p>
-            {{ post.teaser }}
-          </p>
-
-          <div class="card-actions justify-end">
-            <a class="text-gray-500" [routerLink]="`/blog/${post.id}`">
-              Czytaj <fa-icon [icon]="faAnglesRight" />
+        <div
+          class="card card-sm bg-base-100 rounded-none lg:w-md xl:w-xl 2xl:w-md"
+        >
+          <figure>
+            <a [routerLink]="`/blog/${post.id}`" class="w-full">
+              <img
+                [src]="`https://picsum.photos/id/${post.id}/764/573`"
+                class="h-75 w-full object-cover"
+                alt="Shoes"
+              />
             </a>
+          </figure>
+          <div class="card-body">
+            <a [routerLink]="`/blog/${post.id}`">
+              <h2 class="card-title">
+                {{ post.title }}
+              </h2>
+            </a>
+
+            <p class="mb-2 text-gray-500">
+              {{ post.date | date: "longDate" }}
+            </p>
+
+            <p>
+              {{ post.teaser }}
+            </p>
+
+            <div class="card-actions justify-end">
+              <a class="text-gray-500" [routerLink]="`/blog/${post.id}`">
+                Czytaj <fa-icon [icon]="faAnglesRight" />
+              </a>
+            </div>
           </div>
         </div>
-      </div>
       }
     </div>
 
     <div class="mb-4">
-      <app-paginator [pageCount]="this.blogService.pageCount()" [pageNumber]="this.blogService.pageNumber()"
-        (pageChanged)="this.blogService.pageNumber.set($event)" />
+      <app-paginator
+        [pageCount]="this.blogService.pageCount()"
+        [pageNumber]="this.blogService.pageNumber()"
+        (pageChanged)="this.blogService.pageNumber.set($event)"
+      />
     </div>
   </div>
 </div>

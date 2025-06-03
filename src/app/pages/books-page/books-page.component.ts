@@ -7,11 +7,7 @@ import { BooksService } from '../../services/books.service';
 
 @Component({
   selector: 'app-books-page',
-  imports: [
-    FontAwesomeModule,
-    PaginatorComponent,
-    SearchComponent,
-  ],
+  imports: [FontAwesomeModule, PaginatorComponent, SearchComponent],
   templateUrl: './books-page.component.html',
   styleUrl: './books-page.component.css',
 })

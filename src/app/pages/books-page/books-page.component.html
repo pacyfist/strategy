@@ -1,30 +1,36 @@
 <div class="container mx-auto">
-  <div class="m-4 p-4 bg-base-300">
+  <div class="bg-base-300 m-4 p-4">
     <h1 class="mb-8 text-3xl">Moja księgarnia</h1>
 
     <p class="mb-8 text-sm text-gray-500">
-      Na fioletowym parapecie siedział żółty balon filozoficznie rozważający sens
-      kiszonego ogórka w kontekście międzygalaktycznych podróży chomików. Blog
-      ten, jak puchaty jednorożec w kapciach, dryfuje po oceanie pomysłów, gdzie
-      każda litera tańczy sambę z przecinkiem. Gdy cebula śpiewa serenady do
-      tostera, wiesz, że jesteś we właściwym miejscu. Zapnij pasy i przygotuj się
-      na treści, które nie mają sensu, ale mają duszę.
+      Na fioletowym parapecie siedział żółty balon filozoficznie rozważający
+      sens kiszonego ogórka w kontekście międzygalaktycznych podróży chomików.
+      Blog ten, jak puchaty jednorożec w kapciach, dryfuje po oceanie pomysłów,
+      gdzie każda litera tańczy sambę z przecinkiem. Gdy cebula śpiewa serenady
+      do tostera, wiesz, że jesteś we właściwym miejscu. Zapnij pasy i przygotuj
+      się na treści, które nie mają sensu, ale mają duszę.
     </p>
 
     <div class="mb-8">
-      <app-search [value]="this.booksService.filter()" (changed)="this.booksService.filter.set($event)" />
+      <app-search
+        [value]="this.booksService.filter()"
+        (changed)="this.booksService.filter.set($event)"
+      />
     </div>
 
     <div class="mb-16 flex flex-wrap items-stretch justify-evenly gap-8">
       @for (post of this.booksService.page(); track post.id) {
-      <div class="card rounded-none max-w-xs bg-base-100">
-        <div class="card-body">
-          <img [src]="`https://picsum.photos/id/${post.id}/100/141`" alt="Shoes" />
-          <div class="text-sm font-bold">{{ post.title }}</div>
-          <div class="text-xs text-base-100">{{ post.title }}</div>
+        <div class="card bg-base-100 max-w-xs rounded-none">
+          <div class="card-body">
+            <img
+              [src]="`https://picsum.photos/id/${post.id}/100/141`"
+              alt="Shoes"
+            />
+            <div class="text-sm font-bold">{{ post.title }}</div>
+            <div class="text-base-100 text-xs">{{ post.title }}</div>
+          </div>
         </div>
-      </div>
-      <!-- <div
+        <!-- <div
         class="card card-sm rounded-none border-base-300 card-border bg-base-100 w-xs border-2"
       >
         <figure>
@@ -61,9 +67,11 @@
     </div>
 
     <div class="mb-4">
-      <app-paginator [pageCount]="this.booksService.pageCount()" [pageNumber]="this.booksService.pageNumber()"
-        (pageChanged)="this.booksService.pageNumber.set($event)" />
+      <app-paginator
+        [pageCount]="this.booksService.pageCount()"
+        [pageNumber]="this.booksService.pageNumber()"
+        (pageChanged)="this.booksService.pageNumber.set($event)"
+      />
     </div>
   </div>
-
 </div>

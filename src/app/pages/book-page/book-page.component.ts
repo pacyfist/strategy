@@ -9,6 +9,6 @@ import { faDownload } from '@fortawesome/free-solid-svg-icons';
   styleUrl: './book-page.component.css',
 })
 export class BookPageComponent {
-  readonly faDownload = faDownload
+  readonly faDownload = faDownload;
   readonly loading = signal<boolean>(true);
 }
