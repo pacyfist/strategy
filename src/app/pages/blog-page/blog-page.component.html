@@ -12,57 +12,45 @@
     </p>
 
     <div class="mb-8">
-      <app-search
-        [value]="this.blogService.filter()"
-        (changed)="this.blogService.filter.set($event)"
-      />
+      <app-search [(value)]="this.blogService.filter" />
     </div>
 
     <div class="mb-8 flex flex-wrap items-stretch justify-evenly gap-8">
       @for (post of this.blogService.page(); track post.id) {
-        <div
-          class="card card-sm bg-base-100 rounded-none lg:w-md xl:w-xl 2xl:w-md"
-        >
-          <figure>
-            <a [routerLink]="`/blog/${post.id}`" class="w-full">
-              <img
-                [src]="`https://picsum.photos/id/${post.id}/764/573`"
-                class="h-75 w-full object-cover"
-                alt="Shoes"
-              />
+      <div class="card card-sm bg-base-100 rounded-none lg:w-md xl:w-xl 2xl:w-md">
+        <figure>
+          <a [routerLink]="`/blog/${post.id}`" class="w-full">
+            <img [src]="`https://picsum.photos/id/${post.id}/764/573`" class="h-75 w-full object-cover" alt="Shoes" />
+          </a>
+        </figure>
+        <div class="card-body">
+          <a [routerLink]="`/blog/${post.id}`">
+            <h2 class="card-title">
+              {{ post.title }}
+            </h2>
+          </a>
+
+          <p class="mb-2 text-gray-500">
+            {{ post.date | date: "longDate" }}
+          </p>
+
+          <p>
+            {{ post.teaser }}
+          </p>
+
+          <div class="card-actions justify-end">
+            <a class="text-gray-500" [routerLink]="`/blog/${post.id}`">
+              Czytaj <fa-icon [icon]="faAnglesRight" />
             </a>
-          </figure>
-          <div class="card-body">
-            <a [routerLink]="`/blog/${post.id}`">
-              <h2 class="card-title">
-                {{ post.title }}
-              </h2>
-            </a>
-
-            <p class="mb-2 text-gray-500">
-              {{ post.date | date: "longDate" }}
-            </p>
-
-            <p>
-              {{ post.teaser }}
-            </p>
-
-            <div class="card-actions justify-end">
-              <a class="text-gray-500" [routerLink]="`/blog/${post.id}`">
-                Czytaj <fa-icon [icon]="faAnglesRight" />
-              </a>
-            </div>
           </div>
         </div>
+      </div>
       }
     </div>
 
     <div class="mb-4">
-      <app-paginator
-        [pageCount]="this.blogService.pageCount()"
-        [pageNumber]="this.blogService.pageNumber()"
-        (pageChanged)="this.blogService.pageNumber.set($event)"
-      />
+      <app-paginator [pageCount]="this.blogService.pageCount()" [pageNumber]="this.blogService.pageNumber()"
+        (pageChanged)="this.blogService.pageNumber.set($event)" />
     </div>
   </div>
 </div>

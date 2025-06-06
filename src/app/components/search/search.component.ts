@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input, model, output } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
@@ -11,11 +11,10 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 export class SearchComponent {
   readonly faMagnifyingGlass = faMagnifyingGlass;
 
-  readonly value = input.required<string>();
-  readonly changed = output<string>();
+  readonly value = model.required<string>();
 
   update(event: KeyboardEvent) {
     const input = event.target as HTMLInputElement;
-    this.changed.emit(input.value);
+    this.value.set(input.value);
   }
 }
