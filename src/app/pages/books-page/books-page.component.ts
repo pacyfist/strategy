@@ -4,10 +4,16 @@ import { faAnglesRight } from '@fortawesome/free-solid-svg-icons';
 import { PaginatorComponent } from '../../components/paginator/paginator.component';
 import { SearchComponent } from '../../components/search/search.component';
 import { BooksService } from '../../services/books.service';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-books-page',
-  imports: [FontAwesomeModule, PaginatorComponent, SearchComponent],
+  imports: [
+    FontAwesomeModule,
+    PaginatorComponent,
+    SearchComponent,
+    DecimalPipe,
+  ],
   templateUrl: './books-page.component.html',
   styleUrl: './books-page.component.css',
 })

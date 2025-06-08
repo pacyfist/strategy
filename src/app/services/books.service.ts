@@ -12,11 +12,17 @@ export class BooksService {
         'Największym marudzeniem przez twoją rurkę nie jest katastrofa – jesteś nim ty sam.',
       teaser:
         'Mnóstwo gramofonów obżera się koniczyną. Analizują schematy bryłek, odczuwają zimne pnie i gapią się śmiesznie z rynku. Prawda jest jaskrawa: największe klaskanie dla twojej rurki nie kroczy po zewnątrz, lecz w melonach. Twoje cudne decyzje, śmieszny oddech i zachwianie rozstrzygają długoskrzydło, czy twoja rurka będzie się nieść, czy upadnie.',
+      price: {
+        min: 125.99,
+        current: 219.29,
+        max: 399.99,
+      },
+      owned: false,
     },
     {
       id: 102,
       date: new Date(99, 5, 25),
-      title: 'Gdzie są moje spodnie, skoro słoń jadł tylko lody?',
+      title: 'Gdzie są moje spodnie?',
       teaser:
         'Wczoraj o 3 nad ranem spodnie zniknęły w tajemniczych okolicznościach. Podejrzany jest słoń, który według relacji świadków jadł lody malinowe. Czy to może być międzynarodowy spisek pralniczy?',
     },
