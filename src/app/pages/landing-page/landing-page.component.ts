@@ -6,10 +6,11 @@ import {
   faAsterisk,
   faLink,
 } from '@fortawesome/free-solid-svg-icons';
+import { ChapterTitleComponent } from '../../components/chapter-title/chapter-title.component';
 
 @Component({
   selector: 'app-landing-page',
-  imports: [FontAwesomeModule],
+  imports: [FontAwesomeModule, ChapterTitleComponent],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.css',
 })

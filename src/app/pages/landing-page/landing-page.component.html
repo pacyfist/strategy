@@ -43,13 +43,13 @@
 
 <div class="container mx-auto">
   <div class="px-4">
-    <h2 class="mt-32 mb-8 text-center text-3xl">
-      Coś o strategii
-      <a href="#about" id="about"><fa-icon [icon]="faLink" /></a>
-    </h2>
+
+    <app-chapter-title title="Coś o strategii" anchor="about" />
 
     <div class="flex flex-col items-center justify-center gap-8 md:flex-row">
-      <div class="bg-base-300 w-full max-w-md p-4">
+      <div
+        class="bg-base-300 animate-fade-right animate-ease-in-out w-full max-w-md p-4"
+      >
         <h3 class="mx-auto w-fit text-xl">
           Strategia Turbo Chaos składa się z 6 faz:
         </h3>
@@ -65,7 +65,9 @@
         </ul>
       </div>
 
-      <div class="bg-base-300 w-full max-w-md p-4">
+      <div
+        class="bg-base-300 animate-fade-left animate-ease-in-out w-full max-w-md p-4"
+      >
         <h3 class="mx-auto w-fit text-xl">
           Strategia Maksi Pączek składa się z 6 skoków:
         </h3>
@@ -82,9 +84,7 @@
       </div>
     </div>
 
-    <h2 class="mt-32 mb-8 text-center text-3xl">
-      Kontaktuj <a href="#contact" id="contact"><fa-icon [icon]="faLink" /></a>
-    </h2>
+    <app-chapter-title title="Kontaktuj" anchor="contanct" />
 
     <div
       class="mb-4 flex flex-col items-center justify-center gap-4 md:flex-row"
@@ -123,10 +123,7 @@
       </div>
     </div>
 
-    <h2 class="mt-32 mb-8 text-center text-3xl">
-      Inni już lubią!
-      <a href="#likes" id="likes"><fa-icon [icon]="faLink" /></a>
-    </h2>
+    <app-chapter-title title="Inni już lubią!" anchor="likes" />
 
     <div class="flex flex-col items-center justify-around gap-y-8 md:flex-row">
       <div class="mx-2 flex max-w-xs flex-col justify-end">
