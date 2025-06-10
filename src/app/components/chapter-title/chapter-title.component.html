@@ -1,12 +1,7 @@
-@defer (on viewport) {
-  <h2
-    class="animate-fade-down animate-ease-in-out mt-32 mb-8 text-center text-3xl"
-  >
-    {{ title() }}
-    <a [href]="'#' + anchor()" [id]="anchor()">
-      <fa-icon [icon]="faLink" />
-    </a>
-  </h2>
-} @placeholder {
-  <h2></h2>
-}
+<h2 class="mt-32 mb-8 text-center text-3xl" [class.animate-fade]="isVisible()"
+  [class.animate-ease-in-out]="isVisible()">
+  {{ title() }}
+  <a [href]="'#' + anchor()" [id]="anchor()">
+    <fa-icon [icon]="faLink" />
+  </a>
+</h2>
