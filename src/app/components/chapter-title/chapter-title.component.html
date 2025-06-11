@@ -1,5 +1,4 @@
-<h2 class="mt-32 mb-8 text-center text-3xl" [class.animate-fade]="isVisible()"
-  [class.animate-ease-in-out]="isVisible()">
+<h2 class="mt-32 mb-8 text-center text-3xl" inViewClass="animate-fade-down animate-ease-out">
   {{ title() }}
   <a [href]="'#' + anchor()" [id]="anchor()">
     <fa-icon [icon]="faLink" />
