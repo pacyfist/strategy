@@ -6,6 +6,8 @@ import { faAnglesRight } from '@fortawesome/free-solid-svg-icons';
 import { PaginatorComponent } from '../../components/paginator/paginator.component';
 import { SearchComponent } from '../../components/search/search.component';
 import { BlogService } from '../../services/blog.service';
+import { PageTitleComponent } from "../../components/page-title/page-title.component";
+import { PageTeaserComponent } from "../../components/page-teaser/page-teaser.component";
 
 @Component({
   selector: 'app-blog-page',
@@ -15,7 +17,9 @@ import { BlogService } from '../../services/blog.service';
     FontAwesomeModule,
     PaginatorComponent,
     SearchComponent,
-  ],
+    PageTitleComponent,
+    PageTeaserComponent
+],
   templateUrl: './blog-page.component.html',
   styleUrl: './blog-page.component.css',
 })

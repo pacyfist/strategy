@@ -5,6 +5,8 @@ import { PaginatorComponent } from '../../components/paginator/paginator.compone
 import { SearchComponent } from '../../components/search/search.component';
 import { BooksService } from '../../services/books.service';
 import { DecimalPipe } from '@angular/common';
+import { PageTitleComponent } from "../../components/page-title/page-title.component";
+import { PageTeaserComponent } from "../../components/page-teaser/page-teaser.component";
 
 @Component({
   selector: 'app-books-page',
@@ -13,7 +15,9 @@ import { DecimalPipe } from '@angular/common';
     PaginatorComponent,
     SearchComponent,
     DecimalPipe,
-  ],
+    PageTitleComponent,
+    PageTeaserComponent
+],
   templateUrl: './books-page.component.html',
   styleUrl: './books-page.component.css',
 })
