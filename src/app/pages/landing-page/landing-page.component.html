@@ -73,36 +73,7 @@
     </div>
 
     <app-chapter-title title="Kontaktuj" anchor="contanct" />
-
-    <div class="mb-4 flex flex-col items-center justify-center gap-4 md:flex-row">
-
-      <div class="w-full max-w-md sm:w-md" inViewClass="animate-fade-right animate-ease-out">
-        <img src="https://picsum.photos/448/394" alt="random photo" />
-      </div>
-
-      <div class="bg-base-300 w-full max-w-md sm:w-md" inViewClass="animate-fade-left animate-ease-out">
-        <fieldset class="fieldset px-2">
-          <label class="fieldset-label">
-            Imie i Nazwisko
-            <fa-icon [icon]="faAsterisk"></fa-icon>
-          </label>
-          <input type="text" class="input w-full" placeholder="Imie i Nazwisko" />
-
-          <label class="fieldset-label">
-            E-mail
-            <fa-icon [icon]="faAsterisk"></fa-icon>
-          </label>
-          <input type="email" class="input w-full" placeholder="E-mail" />
-
-          <label class="fieldset-label">Pytanie</label>
-          <textarea type="text" class="textarea h-40 w-full" placeholder="Pytanie"></textarea>
-
-          <button
-            class="btn btn-neutral my-2 animation-pulse">Ślij</button>
-        </fieldset>
-      </div>
-
-    </div>
+    <app-contact-form />
 
     <app-chapter-title title="Inni już lubią!" anchor="likes" />
 
