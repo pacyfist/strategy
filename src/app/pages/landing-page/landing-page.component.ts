@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import {
-  faLink
-} from '@fortawesome/free-solid-svg-icons';
+import { faLink } from '@fortawesome/free-solid-svg-icons';
 import { ChapterTitleComponent } from '../../components/chapter-title/chapter-title.component';
 import { ContactFormComponent } from '../../components/contact-form/contact-form.component';
 import { InViewClassDirective } from '../../directives/in-view-class.directive';

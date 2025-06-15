@@ -5,13 +5,8 @@ import { PageTitleComponent } from '../../components/page-title/page-title.compo
 
 @Component({
   selector: 'app-contact-page',
-  imports: [
-    PageTitleComponent,
-    PageTeaserComponent,
-    ContactFormComponent,
-  ],
+  imports: [PageTitleComponent, PageTeaserComponent, ContactFormComponent],
   templateUrl: './contact-page.component.html',
   styleUrl: './contact-page.component.css',
 })
-export class ContactPageComponent {
-}
+export class ContactPageComponent {}

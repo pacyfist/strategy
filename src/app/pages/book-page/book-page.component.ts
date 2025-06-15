@@ -1,8 +1,8 @@
 import { Component, signal } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faDownload } from '@fortawesome/free-solid-svg-icons';
-import { PageTitleComponent } from "../../components/page-title/page-title.component";
-import { PageTeaserComponent } from "../../components/page-teaser/page-teaser.component";
+import { PageTitleComponent } from '../../components/page-title/page-title.component';
+import { PageTeaserComponent } from '../../components/page-teaser/page-teaser.component';
 
 @Component({
   selector: 'app-book-page',

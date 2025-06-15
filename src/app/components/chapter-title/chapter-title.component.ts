@@ -1,7 +1,4 @@
-import {
-  Component,
-  input
-} from '@angular/core';
+import { Component, input } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
 import { InViewClassDirective } from '../../directives/in-view-class.directive';

@@ -4,8 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-page-teaser',
   imports: [],
   templateUrl: './page-teaser.component.html',
-  styleUrl: './page-teaser.component.css'
+  styleUrl: './page-teaser.component.css',
 })
-export class PageTeaserComponent {
-
-}
+export class PageTeaserComponent {}

@@ -22,25 +22,23 @@ export class InViewClassDirective implements AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     // Ensures the following logic runs only in the browser, not during server-side rendering.
     if (typeof window !== 'undefined') {
-      this.observer = new IntersectionObserver(
-        (entries, observer) => {
-          entries.forEach((entry) => {
-            // Is the element currently intersecting the viewport?
-            if (entry.isIntersecting) {
-              // Add the class to the element.
-              this.inViewClass()
-                .split(' ')
-                .forEach((className) =>
-                  this.renderer.addClass(this.hostRef.nativeElement, className),
-                );
+      this.observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          // Is the element currently intersecting the viewport?
+          if (entry.isIntersecting) {
+            // Add the class to the element.
+            this.inViewClass()
+              .split(' ')
+              .forEach((className) =>
+                this.renderer.addClass(this.hostRef.nativeElement, className),
+              );
 
-              // We only want the animation to play once.
-              // After it's visible, we can stop observing it.
-              observer?.unobserve(this.hostRef.nativeElement);
-            }
-          });
-        }
-      );
+            // We only want the animation to play once.
+            // After it's visible, we can stop observing it.
+            observer?.unobserve(this.hostRef.nativeElement);
+          }
+        });
+      });
     }
 
     // Start observing the host element.
