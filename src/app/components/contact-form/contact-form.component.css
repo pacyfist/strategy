@@ -14,8 +14,4 @@
 
 .animation-pulse {
   animation: pulse 1500ms linear 0s infinite normal forwards;
-
-  &:hover {
-    animation-play-state: paused;
-  }
 }
