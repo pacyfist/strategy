@@ -19,7 +19,8 @@ export class ContactFormComponent {
   /* icons */
   readonly faAsterisk = faAsterisk;
 
-  readonly submitted = signal<boolean>(true);
+  readonly errorsRevealed = signal<boolean>(false);
+  readonly formSubmitted = signal<boolean>(true);
 
   readonly form = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -37,11 +38,13 @@ export class ContactFormComponent {
       this.form.controls.email.setValue(stored.email);
       this.form.controls.question.setValue(stored.question);
 
-      this.submitted.set(stored.submitted);
+      this.formSubmitted.set(stored.submitted);
+
+      console.log(this.form);
     }
 
     effect(() => {
-      if (!this.submitted()) {
+      if (!this.formSubmitted()) {
         this.form.controls.name.enable();
         this.form.controls.email.enable();
         this.form.controls.question.enable();
@@ -54,19 +57,21 @@ export class ContactFormComponent {
   }
 
   submit() {
-    if (!this.submitted()) {
+    if (!this.formSubmitted()) {
       if (this.form.valid) {
         localStorage.setItem(
           'app-contact-form',
           JSON.stringify({ submitted: true, ...this.form.value }),
         );
 
-        this.submitted.set(true);
+        this.formSubmitted.set(true);
+      } else {
+        this.errorsRevealed.set(true);
       }
     } else {
       localStorage.removeItem('app-contact-form');
 
-      this.submitted.set(false);
+      this.formSubmitted.set(false);
     }
   }
 }
