@@ -1,9 +1,9 @@
 <div class="mb-4 flex flex-col items-center justify-center gap-4 md:flex-row">
-  <div class="w-full max-w-md sm:w-md" inViewClass="animate-fade-right animate-ease-out">
+  <div class="w-full max-w-md sm:w-md">
     <img src="https://picsum.photos/448/394" alt="random photo" />
   </div>
 
-  <div class="bg-base-300 w-full max-w-md sm:w-md" inViewClass="animate-fade-left animate-ease-out">
+  <div class="bg-base-300 w-full max-w-md sm:w-md">
     <form [formGroup]="this.form" (ngSubmit)="submit()">
       <fieldset class="fieldset px-2">
         <label class="fieldset-label">
@@ -41,7 +41,7 @@
 
   @if (this.formSubmitted())
   {
-  <div class="absolute w-full max-w-md p-6 bg-base-100 border-base-300 shadow-md flex items-center justify-center animate-fade">
+  <div class="absolute w-full max-w-md p-6 bg-base-100 border-base-300 shadow-md flex items-center justify-center">
     <p class="text-green-600 text-xl font-semibold">Wysłane</p>
   </div>
   }

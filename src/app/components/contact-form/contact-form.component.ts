@@ -7,11 +7,10 @@ import {
 } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faAsterisk } from '@fortawesome/free-solid-svg-icons';
-import { InViewClassDirective } from '../../directives/in-view-class.directive';
 
 @Component({
   selector: 'app-contact-form',
-  imports: [FontAwesomeModule, InViewClassDirective, ReactiveFormsModule],
+  imports: [FontAwesomeModule, ReactiveFormsModule],
   templateUrl: './contact-form.component.html',
   styleUrl: './contact-form.component.css',
 })
