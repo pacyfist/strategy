@@ -10,40 +10,54 @@
           Imie i Nazwisko
           <fa-icon [icon]="faAsterisk"></fa-icon>
         </label>
-        <input type="text" class="input w-full" placeholder="Imie i Nazwisko" [formControl]="this.form.controls.name"
+        <input
+          type="text"
+          class="input w-full"
+          placeholder="Imie i Nazwisko"
+          [formControl]="this.form.controls.name"
           [class.input-error]="
             this.form.controls.name.invalid &&
             (this.form.controls.name.dirty || this.errorsRevealed())
-          " />
+          "
+        />
 
         <label class="fieldset-label">
           E-mail
           <fa-icon [icon]="faAsterisk"></fa-icon>
         </label>
-        <input type="email" class="input w-full cursor-default" placeholder="E-mail"
-          [formControl]="this.form.controls.email" [class.input-error]="
+        <input
+          type="email"
+          class="input w-full cursor-default"
+          placeholder="E-mail"
+          [formControl]="this.form.controls.email"
+          [class.input-error]="
             this.form.controls.email.invalid &&
-            (this.form.controls.email.dirty  || this.errorsRevealed())
-          " />
+            (this.form.controls.email.dirty || this.errorsRevealed())
+          "
+        />
 
         <label class="fieldset-label">Pytanie</label>
-        <textarea type="text" class="textarea h-40 w-full" placeholder="Pytanie"
-          [formControl]="this.form.controls.question"></textarea>
+        <textarea
+          type="text"
+          class="textarea h-40 w-full"
+          placeholder="Pytanie"
+          [formControl]="this.form.controls.question"
+        ></textarea>
 
         @if (!this.formSubmitted()) {
-        <button class="btn btn-neutral animation-pulse my-2">Ślij</button>
+          <button class="btn btn-neutral animation-pulse my-2">Ślij</button>
         } @else {
-        <button class="btn btn-neutral my-2">Resetuj</button>
+          <button class="btn btn-neutral my-2">Resetuj</button>
         }
       </fieldset>
     </form>
   </div>
 
-  @if (this.formSubmitted())
-  {
-  <div class="absolute w-full max-w-md p-6 bg-base-100 border-base-300 shadow-md flex items-center justify-center">
-    <p class="text-green-600 text-xl font-semibold">Wysłane</p>
-  </div>
+  @if (this.formSubmitted()) {
+    <div
+      class="bg-base-100 border-base-300 absolute flex w-full max-w-md items-center justify-center p-6 shadow-md"
+    >
+      <p class="text-xl font-semibold text-green-600">Wysłane</p>
+    </div>
   }
-
 </div>
