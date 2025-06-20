@@ -1,4 +1,5 @@
-import { Component, effect, OnInit, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, effect, inject, PLATFORM_ID, signal } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -18,6 +19,8 @@ export class ContactFormComponent {
   /* icons */
   readonly faAsterisk = faAsterisk;
 
+  readonly platformId = inject(PLATFORM_ID);
+
   readonly errorsRevealed = signal<boolean>(false);
   readonly formSubmitted = signal<boolean>(true);
 
@@ -28,7 +31,7 @@ export class ContactFormComponent {
   });
 
   constructor() {
-    if (typeof window !== 'undefined') {
+    if (isPlatformBrowser(this.platformId)) {
       const stored = JSON.parse(
         localStorage.getItem('app-contact-form') ?? '{}',
       );
