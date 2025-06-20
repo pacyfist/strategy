@@ -15,7 +15,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
-      AOS.init();
+      AOS.init({
+        startEvent: 'load' // without this there is no animation without mouse scroll
+      });
       AOS.refresh();
     }
   }
