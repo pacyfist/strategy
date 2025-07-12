@@ -5,14 +5,8 @@ import { ContactFormComponent } from '../../components/contact-form/contact-form
 
 @Component({
   selector: 'app-landing-page',
-  imports: [
-    ChapterTitleComponent,
-    ContactFormComponent,
-    RouterLink,
-  ],
+  imports: [ChapterTitleComponent, ContactFormComponent, RouterLink],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.css',
 })
-export class LandingPageComponent {
-
-}
+export class LandingPageComponent {}

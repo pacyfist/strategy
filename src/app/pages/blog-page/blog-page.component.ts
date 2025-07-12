@@ -19,8 +19,8 @@ export class BlogPageComponent {
 
   readonly sections$ = this.blogService.getArticleSections(this.id);
   readonly metadata$ = this.blogService.blogs$.pipe(
-    mergeMap(blogs => blogs.filter(b=>b.id == this.id)),
-  )
+    mergeMap((blogs) => blogs.filter((b) => b.id == this.id)),
+  );
 
   readonly sections = toSignal(this.sections$);
   readonly metadata = toSignal(this.metadata$);
