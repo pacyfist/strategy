@@ -6,6 +6,5 @@ import { PageTitleComponent } from '../../components/page-title/page-title.compo
   selector: 'app-privacy-page',
   imports: [PageTeaserComponent, PageTitleComponent],
   templateUrl: './privacy-page.component.html',
-  styleUrl: './privacy-page.component.css',
 })
 export class PrivacyPageComponent {}

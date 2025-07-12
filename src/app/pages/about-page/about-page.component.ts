@@ -6,6 +6,5 @@ import { PageTeaserComponent } from '../../components/page-teaser/page-teaser.co
   selector: 'app-about-page',
   imports: [PageTitleComponent, PageTeaserComponent],
   templateUrl: './about-page.component.html',
-  styleUrl: './about-page.component.css',
 })
 export class AboutPageComponent {}

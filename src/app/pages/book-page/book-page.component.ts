@@ -8,7 +8,6 @@ import { PageTeaserComponent } from '../../components/page-teaser/page-teaser.co
   selector: 'app-book-page',
   imports: [FontAwesomeModule, PageTitleComponent, PageTeaserComponent],
   templateUrl: './book-page.component.html',
-  styleUrl: './book-page.component.css',
 })
 export class BookPageComponent {
   readonly faDownload = faDownload;
