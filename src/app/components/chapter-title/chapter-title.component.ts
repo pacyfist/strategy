@@ -6,11 +6,11 @@ import { faLink } from '@fortawesome/free-solid-svg-icons';
   selector: 'app-chapter-title',
   imports: [FontAwesomeModule],
   templateUrl: './chapter-title.component.html',
-  styleUrl: './chapter-title.component.css',
 })
 export class ChapterTitleComponent {
   readonly faLink = faLink;
 
   readonly title = input.required<string>();
   readonly anchor = input.required<string>();
+  readonly center = input<boolean>(false);
 }

@@ -1,4 +1,4 @@
-<h2 class="mt-32 mb-8 text-center text-3xl">
+<h2 class="mt-32 mb-8 text-3xl" [class.text-center]="center()">
   {{ title() }}
   <a [href]="'#' + anchor()" [id]="anchor()">
     <fa-icon [icon]="faLink" />
