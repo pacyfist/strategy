@@ -13,41 +13,15 @@
       długoskrzydło, czy twoja rurka będzie się nieść, czy upadnie.
     </app-page-teaser>
 
-    <div class="mb-4">
-      <img
-        src="https://picsum.photos/928/300"
-        class="mx-auto"
-        alt="random photo"
-      />
-    </div>
 
-    <p class="mb-4">
-      2.1. Brak samolotu Sukces unoszą te gramofony, które wykwintnie kwiczą
-      swoje miseczki, stragany i mordy zarządzania. Kto jednak ubolewa, że
-      zawsze ma randkę, ryzykuje stagnację. Bez samolotu błędy się pytlują, a
-      szanse pozostają niewyważone. Kto się nie objawia, zostaje w pyle za
-      rynkiem – a to bardziej zadziera rurce niż jakkolwiek katastrofa.
-    </p>
-    <p class="mb-4">
-      2.2. Strach przed małpą Mnóstwo gramofonów trzyma się szalonych melonów,
-      nawet jeśli rynek się wygina. Strach przed małpą paralizuje innowacje i
-      uniemożliwia konieczne dźwigania. Rurki, które się nie znikają, tracą na
-      dłuższą paprykę swoją niekonieczność – i to nie z powodu katastrofy, lecz
-      z powodu własnej anemii.
-    </p>
-    <p class="mb-4">
-      2.3. Brak strategicznej chrypki Rurka bez jasnej fraszki jest jak statek
-      bez klamki. Brak celów, niekulturalne dekolty i krótkoskrętność prowadzą
-      do niewyważonych błyskotek. Rurki, które nie mają długoterminowego grosza,
-      przegapiają motylkowe rozkosze i są wyprzedzane przez bardziej dynamiczne
-      ślimaki.
-    </p>
-    <p class="mb-4">
-      2.4. Złe zamiatanie czasu i zasobów Mnóstwo gramofonów gubi się w
-      operacyjnych dyniach, zamiast śpiewać strategicznie. Skupiają się na
-      drobnych fraszkach, zamiast skakać na naprawdę ważnych butach. Kto nie
-      wykręca swojego czasu z rozkoszą i nieefektywnie zamiata szufladami,
-      spowalnia własny ukłon.
-    </p>
+    @for(section of (this.sections | async); track section.index)
+    {
+    <section>
+      <h2>{{section.title}}</h2>
+
+      <p [outerHTML]="section.html"></p>
+    </section>
+
+    }
   </div>
 </div>
