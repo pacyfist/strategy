@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { PageTeaserComponent } from '../../components/page-teaser/page-teaser.component';
+import { PageLeadComponent } from '../../components/page-lead/page-lead.component';
 import { PageTitleComponent } from '../../components/page-title/page-title.component';
 
 @Component({
   selector: 'app-privacy-page',
-  imports: [PageTeaserComponent, PageTitleComponent],
+  imports: [PageLeadComponent, PageTitleComponent],
   templateUrl: './privacy-page.component.html',
 })
 export class PrivacyPageComponent {}

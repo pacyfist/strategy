@@ -2,11 +2,11 @@ import { Component, signal } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import { PageTitleComponent } from '../../components/page-title/page-title.component';
-import { PageTeaserComponent } from '../../components/page-teaser/page-teaser.component';
+import { PageLeadComponent } from '../../components/page-lead/page-lead.component';
 
 @Component({
   selector: 'app-book-page',
-  imports: [FontAwesomeModule, PageTitleComponent, PageTeaserComponent],
+  imports: [FontAwesomeModule, PageTitleComponent, PageLeadComponent],
   templateUrl: './book-page.component.html',
 })
 export class BookPageComponent {
