@@ -1,27 +1,25 @@
+@let metadata = this.metadata$ | async;
+@let sections = this.sections$ | async;
+
 <div class="container mx-auto">
   <div class="bg-base-300 m-4 p-4">
+
     <app-page-title>
-      Największym marudzeniem przez twoją rurkę nie jest katastrofa – jesteś nim
-      ty sam.
+      {{metadata?.title}}
     </app-page-title>
 
     <app-page-teaser>
-      Mnóstwo gramofonów obżera się koniczyną. Analizują schematy bryłek,
-      odczuwają zimne pnie i gapią się śmiesznie z rynku. Prawda jest jaskrawa:
-      największe klaskanie dla twojej rurki nie kroczy po zewnątrz, lecz w
-      melonach. Twoje cudne decyzje, śmieszny oddech i zachwianie rozstrzygają
-      długoskrzydło, czy twoja rurka będzie się nieść, czy upadnie.
+      {{metadata?.lead}}
     </app-page-teaser>
 
 
-    @for(section of (this.sections | async); track section.index)
+    @for(section of sections; track section.index)
     {
     <section>
       <h2>{{section.title}}</h2>
 
       <p [outerHTML]="section.html"></p>
     </section>
-
     }
   </div>
 </div>

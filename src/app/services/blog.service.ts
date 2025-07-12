@@ -67,15 +67,12 @@ export class BlogService {
     Math.ceil(this.data().length / this.pageSize()),
   );
 
-  getSections(id: string): Observable<ISection[]> {
+  getArticleSections(id: string): Observable<ISection[]> {
     return collectionData(
       query(
         collection(this.firestore, `/blogs/${id}/sections/`),
-        orderBy('index'),
+        orderBy('index', 'asc'),
       ),
-      {
-        idField: 'id',
-      },
     ) as Observable<ISection[]>;
   }
 
@@ -107,6 +104,7 @@ interface IBlog {
   title: string;
   lead: string;
   created: Date;
+  section: ISection[];
 }
 
 interface ISection {
