@@ -1,19 +1,17 @@
-@let metadata = this.metadata$ | async;
-@let sections = this.sections$ | async;
 
 <div class="container mx-auto">
   <div class="bg-base-300 m-4 p-4">
 
     <app-page-title>
-      {{metadata?.title}}
+      {{metadata()?.title}}
     </app-page-title>
 
     <app-page-teaser>
-      {{metadata?.lead}}
+      {{metadata()?.lead}}
     </app-page-teaser>
 
 
-    @for(section of sections; track section.index)
+    @for(section of sections(); track section.index)
     {
     <section>
       <h2>{{section.title}}</h2>
