@@ -1,12 +1,12 @@
+import { DecimalPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faAnglesRight } from '@fortawesome/free-solid-svg-icons';
+import { PageTeaserComponent } from '../../components/page-teaser/page-teaser.component';
+import { PageTitleComponent } from '../../components/page-title/page-title.component';
 import { PaginatorComponent } from '../../components/paginator/paginator.component';
 import { SearchComponent } from '../../components/search/search.component';
 import { BooksService } from '../../services/books.service';
-import { DecimalPipe } from '@angular/common';
-import { PageTitleComponent } from '../../components/page-title/page-title.component';
-import { PageTeaserComponent } from '../../components/page-teaser/page-teaser.component';
 
 @Component({
   selector: 'app-books-page',
@@ -18,10 +18,9 @@ import { PageTeaserComponent } from '../../components/page-teaser/page-teaser.co
     PageTitleComponent,
     PageTeaserComponent,
   ],
-  templateUrl: './books-page.component.html',
-  styleUrl: './books-page.component.css',
+  templateUrl: './book-list.component.html',
 })
-export class BooksPageComponent {
+export class BookListComponent {
   readonly booksService = inject(BooksService);
 
   readonly faAnglesRight = faAnglesRight;
