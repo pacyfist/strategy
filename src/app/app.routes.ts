@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { AboutPageComponent } from './pages/about-page/about-page.component';
+import { LoginPageComponent } from './pages/auth/login-page/login-page.component';
 import { BlogListComponent } from './pages/blog-list/blog-list.component';
 import { BlogPageComponent } from './pages/blog-page/blog-page.component';
 import { BookListComponent } from './pages/book-list/book-list.component';
@@ -17,4 +18,5 @@ export const routes: Routes = [
   { path: 'books', component: BookListComponent },
   { path: 'books/:id', component: BookPageComponent },
   { path: 'privacy', component: PrivacyPageComponent },
+  { path: 'login', component: LoginPageComponent },
 ];
