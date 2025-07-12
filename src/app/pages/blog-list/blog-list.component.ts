@@ -3,14 +3,14 @@ import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faAnglesRight } from '@fortawesome/free-solid-svg-icons';
+import { PageTeaserComponent } from '../../components/page-teaser/page-teaser.component';
+import { PageTitleComponent } from '../../components/page-title/page-title.component';
 import { PaginatorComponent } from '../../components/paginator/paginator.component';
 import { SearchComponent } from '../../components/search/search.component';
 import { BlogService } from '../../services/blog.service';
-import { PageTitleComponent } from '../../components/page-title/page-title.component';
-import { PageTeaserComponent } from '../../components/page-teaser/page-teaser.component';
 
 @Component({
-  selector: 'app-blog-page',
+  selector: 'app-blog-list',
   imports: [
     RouterLink,
     DatePipe,
@@ -20,10 +20,9 @@ import { PageTeaserComponent } from '../../components/page-teaser/page-teaser.co
     PageTitleComponent,
     PageTeaserComponent,
   ],
-  templateUrl: './blog-page.component.html',
-  styleUrl: './blog-page.component.css',
+  templateUrl: './blog-list.component.html',
 })
-export class BlogPageComponent {
+export class BlogListComponent {
   readonly route = inject(ActivatedRoute);
   readonly blogService = inject(BlogService);
 
