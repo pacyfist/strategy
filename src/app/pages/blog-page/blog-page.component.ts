@@ -1,19 +1,17 @@
-import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { mergeMap } from 'rxjs';
 import { PageTeaserComponent } from '../../components/page-teaser/page-teaser.component';
 import { PageTitleComponent } from '../../components/page-title/page-title.component';
 import { BlogService } from '../../services/blog.service';
-import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-blog-article',
-  imports: [PageTitleComponent, PageTeaserComponent, AsyncPipe],
-  templateUrl: './blog-article.component.html',
-  styleUrl: './blog-article.component.css',
+  imports: [PageTitleComponent, PageTeaserComponent],
+  templateUrl: './blog-page.component.html',
 })
-export class BlogArticleComponent {
+export class BlogPageComponent {
   readonly route = inject(ActivatedRoute);
   readonly blogService = inject(BlogService);
 
