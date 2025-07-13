@@ -1,16 +1,54 @@
-import { inject, Injectable, signal } from '@angular/core';
-import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { inject, Injectable } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import {
+  Auth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  user,
+} from '@angular/fire/auth';
+import { doc, Firestore, getDoc } from '@angular/fire/firestore';
+import { exhaustMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   readonly auth = inject(Auth);
+  readonly firestore = inject(Firestore);
 
-  readonly user = signal('');
+  readonly user$ = user(this.auth).pipe(
+    exhaustMap(async (user) => {
+      if (user === null) {
+        return null;
+      }
 
-  async login(login: string, password: string) {
-    const user = await signInWithEmailAndPassword(this.auth, login, password);
-    this.user.set(user.user.email ?? '');
+      const userDocument = await getDoc(doc(this.firestore, 'users', user.uid));
+      const userData = userDocument.data() ?? null;
+
+      return {
+        uid: user.uid,
+        email: user.email,
+        isAdmin: userData?.['isAdmin'] ?? false,
+      } as IUser;
+    }),
+  );
+  readonly user = toSignal(this.user$);
+
+  async signIn(login: string, password: string) {
+    await signInWithEmailAndPassword(this.auth, login, password);
   }
+
+  async signOut() {
+    await this.auth.signOut();
+  }
+
+  async create(login: string, password: string) {
+    await createUserWithEmailAndPassword(this.auth, login, password);
+  }
+}
+
+interface IUser {
+  uid: string;
+  email: string;
+  isAdmin: boolean;
 }
