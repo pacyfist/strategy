@@ -4,8 +4,8 @@
   >
     <div class="flex w-full content-between items-center justify-center">
       <div class="w-full max-w-232">
-        <div class="hero bg-base-100/80 my-12">
-          <div class="hero-content text-center">
+        <div class="hero bg-base-100 border-base-300 my-12 border">
+          <div class="hero-content items-stretch text-center">
             <div class="flex max-w-md flex-col">
               <h1 class="text-5xl font-bold">Coś mądrego</h1>
               <p class="py-6">
@@ -25,7 +25,7 @@
                 ale także osiągać wirtualną minimalizację strat w sposób
                 przypadkowy.
               </p>
-              <button class="btn btn-neutral" routerLink="/contact">
+              <button class="btn btn-primary" routerLink="/contact">
                 Zapisz się
               </button>
             </div>
@@ -33,7 +33,7 @@
               <img
                 src="https://picsum.photos/448/600"
                 alt="random photo"
-                class="max-w-sm"
+                class="h-full w-full object-cover"
               />
             </div>
           </div>
@@ -48,7 +48,10 @@
     <app-chapter-title title="Coś o strategii" anchor="about" [center]="true" />
 
     <div class="flex flex-col items-center justify-center gap-8 md:flex-row">
-      <div class="bg-base-300 w-full max-w-md p-4" data-aos="fade-right">
+      <div
+        class="bg-base-100 border-base-300 w-full max-w-md border p-4"
+        data-aos="fade-right"
+      >
         <h3 class="mx-auto w-fit text-xl">
           Strategia Turbo Chaos składa się z 6 faz:
         </h3>
@@ -64,7 +67,10 @@
         </ul>
       </div>
 
-      <div class="bg-base-300 w-full max-w-md p-4" data-aos="fade-left">
+      <div
+        class="bg-base-100 border-base-300 w-full max-w-md border p-4"
+        data-aos="fade-left"
+      >
         <h3 class="mx-auto w-fit text-xl">
           Strategia Maksi Pączek składa się z 6 skoków:
         </h3>
@@ -86,7 +92,9 @@
 
     <app-chapter-title title="Inni już lubią!" anchor="likes" [center]="true" />
 
-    <div class="flex flex-col items-center justify-around gap-y-8 md:flex-row">
+    <div
+      class="bg-base-100 border-base-300 flex flex-col items-center justify-around gap-y-8 border p-4 md:flex-row"
+    >
       <div
         class="mx-2 flex max-w-xs flex-col justify-end"
         data-aos="fade-right"

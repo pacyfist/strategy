@@ -4,7 +4,7 @@
   name: "custom";
   default: true;
   prefersdark: true;
-  color-scheme: "light";
+  color-scheme: "dark";
   --color-base-100: #30323f;
   --color-base-200: #595b65;
   --color-base-300: #83848c;

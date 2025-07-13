@@ -1,12 +1,21 @@
 <div
-  class="mb-4 flex flex-col items-center justify-center gap-4 md:flex-row"
-  data-aos="fade"
+  class="mb-4 flex flex-col items-center justify-center gap-4 md:flex-row md:items-stretch"
 >
-  <div class="w-full max-w-md sm:w-md">
-    <img src="https://picsum.photos/448/394" alt="random photo" />
+  <div
+    class="bg-base-100 border-base-300 min-h-40 w-full max-w-md border sm:w-md"
+    data-aos="fade-right"
+  >
+    <img
+      src="https://picsum.photos/448/394"
+      alt="random photo"
+      class="h-full w-full object-cover"
+    />
   </div>
 
-  <div class="bg-base-300 w-full max-w-md sm:w-md">
+  <div
+    class="bg-base-100 border-base-300 w-full max-w-md border sm:w-md"
+    data-aos="fade-left"
+  >
     <form [formGroup]="this.form" (ngSubmit)="submit()">
       <fieldset class="fieldset px-2">
         <label class="fieldset-label">
@@ -48,7 +57,7 @@
         ></textarea>
 
         @if (!this.formSubmitted()) {
-          <button class="btn btn-neutral animation-pulse my-2">Ślij</button>
+          <button class="btn btn-accent animation-pulse my-2">Ślij</button>
         } @else {
           <button class="btn btn-neutral my-2">Resetuj</button>
         }
