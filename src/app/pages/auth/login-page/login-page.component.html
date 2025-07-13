@@ -1,10 +1,9 @@
 <div class="container mx-auto">
-  <div class="bg-base-300 m-4 p-4">
-    <app-page-title>Logowanie</app-page-title>
+  <div class="bg-base-100 p-4">
+    <app-page-title>Zaloguj się</app-page-title>
     <div class="flex justify-center">
       <div class="w-full max-w-sm">
-        <h2 class="mb-6 text-center text-2xl font-bold">Logowanie</h2>
-        <form>
+        <form [formGroup]="this.form" (ngSubmit)="signIn()">
           <fieldset
             class="fieldset bg-base-200 border-base-300 rounded-box border p-4"
           >
@@ -15,7 +14,7 @@
               placeholder="jan.kowalski@email.com"
               name="email"
               [class.input-error]="this.failed()"
-              [(ngModel)]="this.email"
+              [formControl]="this.form.controls.email"
             />
 
             <label class="label">Hasło</label>
@@ -25,16 +24,15 @@
               placeholder="••••••••"
               name="password"
               [class.input-error]="this.failed()"
-              [(ngModel)]="this.password"
+              [formControl]="this.form.controls.password"
             />
 
-            <button class="btn btn-neutral mt-4" (click)="loginClick()">
-              Zaloguj się
-            </button>
+            <button class="btn btn-neutral mt-4">Zaloguj się</button>
           </fieldset>
         </form>
       </div>
     </div>
-    <div class="mb-24"></div>
+
+    <div class="mb-16"></div>
   </div>
 </div>
