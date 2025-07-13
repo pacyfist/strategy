@@ -17,10 +17,10 @@ export class LoginPageComponent {
   readonly failed = signal<boolean>(false);
 
   async loginClick() {
-    try {
-      await this.auth.login(this.email(), this.password());
+    this.failed.set(false);
 
-      this.failed.set(false);
+    try {
+      await this.auth.signIn(this.email(), this.password());
     } catch (ex) {
       this.failed.set(true);
     }
