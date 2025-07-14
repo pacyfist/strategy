@@ -1,6 +1,6 @@
 <div class="navbar flex-col md:flex-row">
   <div class="navbar-start w-auto items-end sm:w-1/2">
-    <a class="btn btn-ghost text-xl" routerLink="/">Logo</a>
+    <a class="btn btn-ghost title-font text-xl" routerLink="/">Logo</a>
 
     <a
       class="btn btn-ghost text-xl sm:hidden"
@@ -15,37 +15,43 @@
   </div>
   <div class="navbar-center flex-col sm:flex-row">
     <a
-      class="btn btn-ghost text-xl sm:flex"
-      [class.hidden]="collapsed()"
-      routerLink="/"
-      >Domowa</a
-    >
-    <a
-      class="btn btn-ghost text-xl sm:flex"
+      class="btn btn-ghost title-font text-xl sm:flex"
       [class.hidden]="collapsed()"
       routerLink="/about"
       >O nas</a
     >
     <a
-      class="btn btn-ghost text-xl sm:flex"
+      class="btn btn-ghost title-font text-xl sm:flex"
       [class.hidden]="collapsed()"
       routerLink="/contact"
       >Kontakt</a
     >
     <a
-      class="btn btn-ghost text-xl sm:flex"
+      class="btn btn-ghost title-font text-xl sm:flex"
       [class.hidden]="collapsed()"
       routerLink="/blog"
       >Blog</a
     >
     <a
-      class="btn btn-ghost text-xl sm:flex"
+      class="btn btn-ghost title-font text-xl sm:flex"
       [class.hidden]="collapsed()"
       routerLink="/books"
       >Książki</a
     >
   </div>
   <div class="navbar-end w-auto sm:w-1/2">
-    <a class="btn btn-ghost text-xl" routerLink="/contact">Zapisz się</a>
+    @if (this.isPlatformBrowser) {
+      @if (this.auth.isUserLoggedOut()) {
+        <a class="btn btn-ghost title-font text-xl" routerLink="/login">
+          Zaloguj się
+        </a>
+      }
+
+      @if (this.auth.isUserLoggedIn()) {
+        <a class="btn btn-ghost title-font text-xl" (click)="this.auth.signOut()">
+          Wyloguj
+        </a>
+      }
+    }
   </div>
 </div>
