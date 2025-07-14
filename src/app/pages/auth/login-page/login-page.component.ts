@@ -1,20 +1,32 @@
-import { Component, inject, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import {
+  Component,
+  computed,
+  inject,
+  PLATFORM_ID,
+  signal,
+} from '@angular/core';
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { PageTitleComponent } from '../../../components/page-title/page-title.component';
 import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-login-page',
-  imports: [PageTitleComponent, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './login-page.component.html',
 })
 export class LoginPageComponent {
+  readonly platform = inject(PLATFORM_ID);
+  readonly isPlatformBrowser = isPlatformBrowser(this.platform);
+
   readonly auth = inject(AuthService);
+  readonly isLoggedOut = computed(() => this.auth.user() === null);
+  readonly isLoggedIn = computed(() => !!this.auth.user());
+  readonly userName = computed(() => this.auth.user()?.email);
 
   readonly form = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
