@@ -48,7 +48,10 @@
       }
 
       @if (this.auth.isUserLoggedIn()) {
-        <a class="btn btn-ghost title-font text-xl" (click)="this.auth.signOut()">
+        <a
+          class="btn btn-ghost title-font text-xl"
+          (click)="this.auth.signOut()"
+        >
           Wyloguj
         </a>
       }
