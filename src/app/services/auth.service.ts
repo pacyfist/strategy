@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { computed, inject, Injectable } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import {
   Auth,
@@ -33,6 +33,10 @@ export class AuthService {
     }),
   );
   readonly user = toSignal(this.user$);
+
+  readonly isUserLoggedOut = computed(() => this.user() === null);
+  readonly isUserLoggedIn = computed(() => !!this.user());
+  readonly useDisplayName = computed(() => this.user()?.email);
 
   async signIn(login: string, password: string) {
     await signInWithEmailAndPassword(this.auth, login, password);

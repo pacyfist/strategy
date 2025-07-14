@@ -24,9 +24,6 @@ export class LoginPageComponent {
   readonly isPlatformBrowser = isPlatformBrowser(this.platform);
 
   readonly auth = inject(AuthService);
-  readonly isLoggedOut = computed(() => this.auth.user() === null);
-  readonly isLoggedIn = computed(() => !!this.auth.user());
-  readonly userName = computed(() => this.auth.user()?.email);
 
   readonly form = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
