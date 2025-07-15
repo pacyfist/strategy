@@ -30,18 +30,15 @@
               [formControl]="this.form.controls.password"
             />
 
-            <button class="btn btn-neutral mt-4">Zaloguj się</button>
+            <button class="btn btn-primary mt-4">
+              @if (this.loading()) {
+                <span class="loading loading-spinner loading-xl"></span>
+              } @else {
+                <fa-icon [icon]="faRightToBracket" /> Zaloguj się
+              }
+            </button>
           </fieldset>
         </form>
-      }
-      @if (this.auth.isUserLoggedIn()) {
-        <div class="my-6 text-center text-xl">
-          <p class="">Jesteś zalogowany jako:</p>
-          <p class="font-extrabold">{{ this.auth.useDisplayName() }}</p>
-        </div>
-        <div class="text-center">
-          <a href="/" class="btn btn-primary">Przejdź do strony głównej</a>
-        </div>
       }
     }
   </div>
