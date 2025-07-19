@@ -7,7 +7,6 @@ import { PageTitleComponent } from '../../../components/page-title/page-title.co
 import { BlogService } from '../../../services/blog.service';
 
 @Component({
-  selector: 'app-blog-article',
   imports: [PageTitleComponent, PageLeadComponent],
   templateUrl: './blog-page.component.html',
 })

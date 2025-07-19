@@ -8,11 +8,16 @@ import {
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import {
+  addDoc,
   collection,
   collectionData,
+  deleteDoc,
+  doc,
   Firestore,
+  getDocs,
   orderBy,
   query,
+  setDoc,
 } from '@angular/fire/firestore';
 import { map, Observable } from 'rxjs';
 
@@ -67,13 +72,45 @@ export class BlogService {
     Math.ceil(this.data().length / this.pageSize()),
   );
 
-  getArticleSections(id: string): Observable<ISection[]> {
+  getArticleSections(articleId: string): Observable<ISection[]> {
     return collectionData(
       query(
-        collection(this.firestore, `/blogs/${id}/sections/`),
+        collection(this.firestore, `/blogs/${articleId}/sections/`),
         orderBy('index', 'asc'),
       ),
+      {
+        idField: 'id',
+      },
     ) as Observable<ISection[]>;
+  }
+
+  addArticleSection(articleId: string, section: Omit<ISection, 'id'>) {
+    addDoc(
+      collection(this.firestore, `/blogs/${articleId}/sections/`),
+      section,
+    );
+  }
+
+  delArticleSection(articleId: string, sectionId: string) {
+    deleteDoc(doc(this.firestore, `/blogs/${articleId}/sections/`, sectionId));
+  }
+
+  async fixArticleSectionIndexes(articleId: string) {
+    let index = 0;
+    console.log('articleId', articleId);
+    const sections = await getDocs(
+      query(
+        collection(this.firestore, `/blogs/${articleId}/sections/`),
+        orderBy('index', 'asc'),
+      ),
+    );
+    sections.forEach(async (s) => {
+      console.log(s.data());
+      await setDoc(doc(this.firestore, 'blogs', articleId, 'sections', s.id), {
+        ...s.data(),
+        index: index++,
+      });
+    });
   }
 
   constructor() {
@@ -108,6 +145,7 @@ interface IBlog {
 }
 
 interface ISection {
+  id: string;
   index: number;
   title: string;
   html: string;
