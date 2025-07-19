@@ -6,12 +6,12 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faAsterisk } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-contact-form',
-  imports: [FontAwesomeModule, ReactiveFormsModule],
+  imports: [FaIconComponent, ReactiveFormsModule],
   templateUrl: './contact-form.component.html',
   styleUrl: './contact-form.component.css',
 })

@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faAnglesRight } from '@fortawesome/free-solid-svg-icons';
 import { PageLeadComponent } from '../../../components/page-lead/page-lead.component';
 import { PageTitleComponent } from '../../../components/page-title/page-title.component';
@@ -13,7 +13,7 @@ import { BlogService } from '../../../services/blog.service';
   imports: [
     RouterLink,
     DatePipe,
-    FontAwesomeModule,
+    FaIconComponent,
     PaginatorComponent,
     SearchComponent,
     PageTitleComponent,

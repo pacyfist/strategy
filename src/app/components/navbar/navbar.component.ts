@@ -1,7 +1,7 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, inject, PLATFORM_ID, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import {
   faChevronDown,
   faChevronUp,
@@ -11,7 +11,7 @@ import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink, FontAwesomeModule],
+  imports: [RouterLink, FaIconComponent],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })

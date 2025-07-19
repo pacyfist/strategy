@@ -1,10 +1,10 @@
 import { Component, input } from '@angular/core';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-chapter-title',
-  imports: [FontAwesomeModule],
+  imports: [FaIconComponent],
   templateUrl: './chapter-title.component.html',
 })
 export class ChapterTitleComponent {

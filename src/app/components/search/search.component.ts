@@ -1,10 +1,10 @@
 import { Component, input, model, output } from '@angular/core';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-search',
-  imports: [FontAwesomeModule],
+  imports: [FaIconComponent],
   templateUrl: './search.component.html',
   styleUrl: './search.component.css',
 })
