@@ -9,10 +9,10 @@
     </app-page-lead>
 
     @for (section of sections(); track section.index) {
+      <h2>{{ section.title }}</h2>
+      
       <section>
-        <h2>{{ section.title }}</h2>
-
-        <p [outerHTML]="section.html"></p>
+        <quill-view-html [content]="section.html" format="text" theme="snow" />
       </section>
     }
   </div>
