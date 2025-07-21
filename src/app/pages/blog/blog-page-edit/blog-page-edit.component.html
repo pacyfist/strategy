@@ -9,40 +9,47 @@
     </app-page-lead>
     <div class="flex flex-col gap-4">
       @for (section of sections(); track section.index) {
-        <div class="card border-base-300 rounded-sm border">
-          <div class="card-body">
-            <div class="">
-              <div class="float-end flex gap-4 py-1 pl-4">
-                <div class="btn h-6"><fa-icon [icon]="faAdd" /></div>
-                <div class="btn h-6"><fa-icon [icon]="faEdit" /></div>
-                <a class="btn h-6" (click)="delSection(section.id)"
-                  ><fa-icon [icon]="faDelete"
-                /></a>
+      <div class="card border-base-300 rounded-sm border">
+        <div class="card-body">
+          <div class="">
+            <div class="float-end flex gap-4 py-1 pl-4">
+              <div class="btn h-6">
+                <fa-icon [icon]="faAdd" />
               </div>
-              <h2 class="text-2xl">
-                {{ section.index + 1 }}) {{ section.title }}
-              </h2>
+              <a class="btn h-6" (click)="this.editSectionId.set(section.id)">
+                <fa-icon [icon]="faEdit" />
+              </a>
+              <a class="btn h-6" (click)="delSection(section.id)">
+                <fa-icon [icon]="faDelete" />
+              </a>
             </div>
-            <section [innerHTML]="section.html"></section>
-            <!-- <quill-view-html [content]="section.html" format="text" theme="snow" /> -->
-
-            <!-- <div class="bg-base-300">
-            <quill-editor class="w-full" [modules]="this.modules" theme="snow" placeholder="Doberek..."
-              (onContentChanged)="this.text.set($event.html ?? '')" />
-          </div> -->
+            <h2 class="text-2xl">
+              {{ section.index + 1 }}) {{ section.title }}
+            </h2>
           </div>
+          <section>
+
+            @if(this.editSectionId() === section.id){
+            <div class="bg-base-300">
+              <quill-editor class="w-full" [modules]="this.modules" ctheme="snow" placeholder="Doberek..."
+                [(ngModel)]="editSectionHtml">
+
+              </quill-editor>
+            </div>
+            }@else {
+            <quill-view-html [content]=" section.html" format="text" theme="snow" />
+            }
+          </section>
+
         </div>
+      </div>
       }
 
       <div class="text-center">
         <a class="btn btn-primary" (click)="addSection()">+ Dodaj Sekcję</a>
-        <a
-          class="btn btn-primary"
-          (click)="
+        <a class="btn btn-primary" (click)="
             this.blogService.fixArticleSectionIndexes(this.metadata()?.id ?? '')
-          "
-          >+ indeksy</a
-        >
+          ">+ indeksy</a>
       </div>
     </div>
   </div>

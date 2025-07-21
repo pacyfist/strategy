@@ -91,26 +91,33 @@ export class BlogService {
     );
   }
 
+  setArticleSection(articleId: string, section: ISection) {
+    setDoc(
+      doc(this.firestore, 'blogs', articleId, 'sections', section.id),
+      section,
+    );
+  }
+
   delArticleSection(articleId: string, sectionId: string) {
     deleteDoc(doc(this.firestore, `/blogs/${articleId}/sections/`, sectionId));
   }
 
   async fixArticleSectionIndexes(articleId: string) {
-    let index = 0;
-    console.log('articleId', articleId);
-    const sections = await getDocs(
+    const sectionsSnapshot = await getDocs(
       query(
         collection(this.firestore, `/blogs/${articleId}/sections/`),
         orderBy('index', 'asc'),
       ),
     );
-    sections.forEach(async (s) => {
-      console.log(s.data());
-      await setDoc(doc(this.firestore, 'blogs', articleId, 'sections', s.id), {
-        ...s.data(),
-        index: index++,
-      });
-    });
+
+    const updatePromises = sectionsSnapshot.docs.map((docSnap, idx) =>
+      setDoc(doc(this.firestore, 'blogs', articleId, 'sections', docSnap.id), {
+        ...docSnap.data(),
+        index: idx,
+      }),
+    );
+
+    await Promise.all(updatePromises);
   }
 
   constructor() {

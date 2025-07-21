@@ -1,6 +1,7 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, linkedSignal, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { ActivatedRoute } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faAdd, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { QuillModule } from 'ngx-quill';
@@ -8,6 +9,7 @@ import { mergeMap } from 'rxjs';
 import { PageLeadComponent } from '../../../components/page-lead/page-lead.component';
 import { PageTitleComponent } from '../../../components/page-title/page-title.component';
 import { BlogService } from '../../../services/blog.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   imports: [
@@ -15,6 +17,7 @@ import { BlogService } from '../../../services/blog.service';
     PageLeadComponent,
     QuillModule,
     FaIconComponent,
+    FormsModule,
   ],
   templateUrl: './blog-page-edit.component.html',
 })
@@ -24,7 +27,9 @@ export class BlogPageEditComponent {
   readonly faDelete = faTrash;
 
   readonly route = inject(ActivatedRoute);
+  readonly router = inject(Router);
   readonly blogService = inject(BlogService);
+  readonly auth = inject(AuthService);
 
   readonly id = this.route.snapshot.params['id'];
 
@@ -36,7 +41,11 @@ export class BlogPageEditComponent {
   readonly sections = toSignal(this.sections$);
   readonly metadata = toSignal(this.metadata$);
 
-  readonly text = signal('');
+  readonly editSectionId = signal<string>('');
+
+  readonly editSectionHtml = linkedSignal(
+    () => this.sections()?.find((s) => s.id == this.editSectionId())?.html,
+  );
 
   modules = {
     toolbar: [
@@ -61,6 +70,15 @@ export class BlogPageEditComponent {
       ['link', 'image', 'video'], // link and image, video
     ],
   };
+
+  constructor() {
+    this.auth.user$.subscribe((u) => {
+      const articleId = this.route.snapshot.params['id'];
+      if (!u?.isAdmin) {
+        this.router.navigateByUrl(`/blog/${articleId}`);
+      }
+    });
+  }
 
   addSection(): void {
     const articleId = this.metadata()?.id;
