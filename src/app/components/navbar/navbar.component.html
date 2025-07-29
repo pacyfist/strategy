@@ -1,57 +1,85 @@
-<div class="navbar flex-col md:flex-row">
-  <div class="navbar-start w-auto items-end sm:w-1/2">
-    <a class="btn btn-ghost title-font text-xl" routerLink="/">Logo</a>
+<div class="container mx-auto">
+  <div class="navbar flex-col md:flex-row">
+    <div class="navbar-start w-auto items-end sm:w-1/2">
+      <a class="btn btn-ghost title-font text-xl" routerLink="/">Logo</a>
+      <a
+        class="btn btn-ghost text-xl sm:hidden"
+        (click)="collapsed.set(!collapsed())"
+      >
+        @if (collapsed()) {
+          <fa-icon [icon]="faChevronDown" />
+        } @else {
+          <fa-icon [icon]="faChevronUp" />
+        }
+      </a>
+    </div>
+    <div class="navbar-center flex-col sm:flex-row">
+      <a
+        class="btn btn-ghost title-font text-xl sm:flex"
+        [class.hidden]="collapsed()"
+        routerLink="/about"
+      >
+        O nas
+      </a>
+      <a
+        class="btn btn-ghost title-font text-xl sm:flex"
+        [class.hidden]="collapsed()"
+        routerLink="/contact"
+      >
+        Kontakt
+      </a>
+      <a
+        class="btn btn-ghost title-font text-xl sm:flex"
+        [class.hidden]="collapsed()"
+        routerLink="/blog"
+      >
+        Blog
+      </a>
+      <a
+        class="btn btn-ghost title-font text-xl sm:flex"
+        [class.hidden]="collapsed()"
+        routerLink="/books"
+      >
+        Książki
+      </a>
+    </div>
+    <div class="navbar-end w-auto sm:w-1/2">
+      @if (this.platform.isBrowser()) {
+        @if (this.auth.isUserLoggedOut()) {
+          <a class="btn btn-ghost title-font text-xl" routerLink="/login">
+            Zaloguj się
+          </a>
+        }
 
-    <a
-      class="btn btn-ghost text-xl sm:hidden"
-      (click)="collapsed.set(!collapsed())"
-    >
-      @if (collapsed()) {
-        <fa-icon [icon]="faChevronDown" />
-      } @else {
-        <fa-icon [icon]="faChevronUp" />
+        @if (this.auth.isUserLoggedIn()) {
+          <div class="dropdown dropdown-end">
+            <div tabindex="0" role="button" class="btn m-1 text-xl">
+              <fa-icon [icon]="faBars" />
+            </div>
+            <ul
+              tabindex="0"
+              class="menu dropdown-content bg-base-300 rounded-box z-1 px-8 py-2 shadow-sm"
+            >
+              <li>
+                <a
+                  class="btn btn-ghost title-font text-xl"
+                  routerLink="/account"
+                >
+                  Konto
+                </a>
+              </li>
+              <li>
+                <a
+                  class="btn btn-ghost title-font text-xl"
+                  routerLink="/logout"
+                >
+                  Wyloguj
+                </a>
+              </li>
+            </ul>
+          </div>
+        }
       }
-    </a>
-  </div>
-  <div class="navbar-center flex-col sm:flex-row">
-    <a
-      class="btn btn-ghost title-font text-xl sm:flex"
-      [class.hidden]="collapsed()"
-      routerLink="/about"
-      >O nas</a
-    >
-    <a
-      class="btn btn-ghost title-font text-xl sm:flex"
-      [class.hidden]="collapsed()"
-      routerLink="/contact"
-      >Kontakt</a
-    >
-    <a
-      class="btn btn-ghost title-font text-xl sm:flex"
-      [class.hidden]="collapsed()"
-      routerLink="/blog"
-      >Blog</a
-    >
-    <a
-      class="btn btn-ghost title-font text-xl sm:flex"
-      [class.hidden]="collapsed()"
-      routerLink="/books"
-      >Książki</a
-    >
-  </div>
-  <div class="navbar-end w-auto sm:w-1/2">
-    @if (this.isPlatformBrowser) {
-      @if (this.auth.isUserLoggedOut()) {
-        <a class="btn btn-ghost title-font text-xl" routerLink="/login">
-          Zaloguj się
-        </a>
-      }
-
-      @if (this.auth.isUserLoggedIn()) {
-        <a class="btn btn-ghost title-font text-xl" routerLink="/logout">
-          Wyloguj
-        </a>
-      }
-    }
+    </div>
   </div>
 </div>

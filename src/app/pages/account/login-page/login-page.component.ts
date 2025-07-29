@@ -14,14 +14,14 @@ import {
 import { AuthService } from '../../../services/auth.service';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { Router } from '@angular/router';
+import { PlatformService } from '../../../services/platform.service';
 
 @Component({
   imports: [ReactiveFormsModule, FaIconComponent],
   templateUrl: './login-page.component.html',
 })
 export class LoginPageComponent {
-  readonly platform = inject(PLATFORM_ID);
-  readonly isPlatformBrowser = isPlatformBrowser(this.platform);
+  readonly platform = inject(PlatformService);
 
   readonly faHouse = faHouse;
   readonly faRightToBracket = faRightToBracket;
@@ -46,7 +46,7 @@ export class LoginPageComponent {
         this.form.controls.email.value ?? '',
         this.form.controls.password.value ?? '',
       );
-      this.router.navigateByUrl('/');
+      this.router.navigateByUrl('/account');
     } catch (ex) {
       this.failed.set(true);
     }

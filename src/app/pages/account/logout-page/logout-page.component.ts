@@ -4,14 +4,14 @@ import { Router, RouterLink } from '@angular/router';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faHouse, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../../../services/auth.service';
+import { PlatformService } from '../../../services/platform.service';
 
 @Component({
   imports: [RouterLink, FaIconComponent],
   templateUrl: './logout-page.component.html',
 })
 export class LogoutPageComponent {
-  readonly platform = inject(PLATFORM_ID);
-  readonly isPlatformBrowser = isPlatformBrowser(this.platform);
+  readonly platform = inject(PlatformService);
 
   readonly faHouse = faHouse;
   readonly faRightFromBracket = faRightFromBracket;

@@ -9,6 +9,7 @@ import { BookPageComponent } from './pages/book-page/book-page.component';
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { PrivacyPageComponent } from './pages/privacy-page/privacy-page.component';
+import { AccountPageComponent } from './pages/account/account-page/account-page.component';
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -35,4 +36,5 @@ export const routes: Routes = [
   { path: 'privacy', component: PrivacyPageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'logout', component: LogoutPageComponent },
+  { path: 'account', component: AccountPageComponent },
 ];

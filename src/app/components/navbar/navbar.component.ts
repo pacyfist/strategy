@@ -3,11 +3,12 @@ import { Component, inject, PLATFORM_ID, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import {
+  faBars,
   faChevronDown,
   faChevronUp,
-  IconDefinition,
 } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../../services/auth.service';
+import { PlatformService } from '../../services/platform.service';
 
 @Component({
   selector: 'app-navbar',
@@ -16,11 +17,11 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './navbar.component.css',
 })
 export class NavbarComponent {
-  readonly faChevronDown: IconDefinition = faChevronDown;
-  readonly faChevronUp: IconDefinition = faChevronUp;
+  readonly faChevronDown = faChevronDown;
+  readonly faChevronUp = faChevronUp;
+  readonly faBars = faBars;
 
-  readonly platform = inject(PLATFORM_ID);
-  readonly isPlatformBrowser = isPlatformBrowser(this.platform);
+  readonly platform = inject(PlatformService);
 
   readonly auth = inject(AuthService);
 

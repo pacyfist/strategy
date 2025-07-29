@@ -6,7 +6,7 @@
     >
       Zaloguj się
     </h1>
-    @if (this.isPlatformBrowser) {
+    @if (this.platform.isBrowser()) {
       @if (this.auth.isUserLoggedOut()) {
         <form class="my-6" [formGroup]="this.form" (ngSubmit)="signIn()">
           <fieldset class="fieldset rounded-box">
