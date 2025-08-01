@@ -6,56 +6,62 @@ import {
   signal,
   untracked,
 } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import {
-  addDoc,
   collection,
   collectionData,
-  deleteDoc,
-  doc,
   Firestore,
-  getDocs,
-  orderBy,
   query,
-  setDoc,
+  where,
 } from '@angular/fire/firestore';
-import { map, Observable } from 'rxjs';
+import { map, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BlogService {
-  readonly firestore = inject(Firestore);
+  private readonly firestore = inject(Firestore);
 
-  readonly blogsCollectionRef = collection(this.firestore, '/blogs');
+  readonly languageFilter = signal('pl');
+  readonly textFilter = signal<string>('');
+  readonly pageNumber = signal<number>(0);
+  readonly pageSize = signal<number>(6);
 
-  readonly blogs$ = collectionData(this.blogsCollectionRef, {
-    idField: 'id',
-  }).pipe(
-    map((blogs) => {
-      return blogs.map(
-        (blog) => ({ ...blog, created: blog['created'].toDate() }) as IBlog,
+  private readonly blogsPages$ = toObservable(this.languageFilter).pipe(
+    switchMap((language) =>
+      collectionData(
+        query(
+          collection(this.firestore, '/blog'),
+          where('lang', '==', language),
+        ),
+        {
+          idField: 'id',
+        },
+      ),
+    ),
+    map((blogArticles) => {
+      return blogArticles.map(
+        (blogArticle) =>
+          ({
+            ...blogArticle,
+            created: blogArticle['created'].toDate(),
+          }) as IBlogArticle,
       );
     }),
   );
-  readonly blogs = toSignal(this.blogs$);
 
-  readonly filter = signal<string>('');
+  readonly blogArticles = toSignal(this.blogsPages$);
 
-  readonly data = computed(() => {
-    const search = this.filter().toLowerCase();
-
+  private readonly filteredPages = computed(() => {
+    const search = this.textFilter().toLowerCase();
     return (
-      this.blogs()?.filter(
+      this.blogArticles()?.filter(
         (item) =>
           item.title.toLowerCase().includes(search) ||
           item.lead.toLowerCase().includes(search),
       ) ?? []
     );
   });
-
-  readonly pageNumber = signal<number>(0);
-  readonly pageSize = signal<number>(6);
 
   private readonly pageStart = computed(
     () => this.pageNumber() * this.pageSize(),
@@ -65,60 +71,12 @@ export class BlogService {
   );
 
   readonly page = computed(() =>
-    this.data().slice(this.pageStart(), this.pageFinish()),
+    this.filteredPages().slice(this.pageStart(), this.pageFinish()),
   );
 
   readonly pageCount = computed(() =>
-    Math.ceil(this.data().length / this.pageSize()),
+    Math.ceil(this.filteredPages().length / this.pageSize()),
   );
-
-  getArticleSections(articleId: string): Observable<ISection[]> {
-    return collectionData(
-      query(
-        collection(this.firestore, `/blogs/${articleId}/sections/`),
-        orderBy('index', 'asc'),
-      ),
-      {
-        idField: 'id',
-      },
-    ) as Observable<ISection[]>;
-  }
-
-  addArticleSection(articleId: string, section: Omit<ISection, 'id'>) {
-    addDoc(
-      collection(this.firestore, `/blogs/${articleId}/sections/`),
-      section,
-    );
-  }
-
-  setArticleSection(articleId: string, section: ISection) {
-    setDoc(
-      doc(this.firestore, 'blogs', articleId, 'sections', section.id),
-      section,
-    );
-  }
-
-  delArticleSection(articleId: string, sectionId: string) {
-    deleteDoc(doc(this.firestore, `/blogs/${articleId}/sections/`, sectionId));
-  }
-
-  async fixArticleSectionIndexes(articleId: string) {
-    const sectionsSnapshot = await getDocs(
-      query(
-        collection(this.firestore, `/blogs/${articleId}/sections/`),
-        orderBy('index', 'asc'),
-      ),
-    );
-
-    const updatePromises = sectionsSnapshot.docs.map((docSnap, idx) =>
-      setDoc(doc(this.firestore, 'blogs', articleId, 'sections', docSnap.id), {
-        ...docSnap.data(),
-        index: idx,
-      }),
-    );
-
-    await Promise.all(updatePromises);
-  }
 
   constructor() {
     // Ensure the page number is within the valid range
@@ -139,8 +97,9 @@ export class BlogService {
   }
 }
 
-interface IBlog {
+interface IBlogArticle {
   id: string;
+  path: string;
   image: {
     url: string;
     alt: string;
@@ -148,12 +107,4 @@ interface IBlog {
   title: string;
   lead: string;
   created: Date;
-  section: ISection[];
-}
-
-interface ISection {
-  id: string;
-  index: number;
-  title: string;
-  html: string;
 }

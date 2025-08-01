@@ -1,6 +1,11 @@
 <div class="container mx-auto">
   <div class="bg-base-100 p-4">
-    <app-page-title>Blog ze świata strategii</app-page-title>
+    <app-page-title>
+      Blog ze świata strategii
+      @if (authService.isUserAdmin()) {
+        <a [routerLink]="`/blog/edit`"><fa-icon [icon]="faPenToSquare" /></a>
+      }
+    </app-page-title>
 
     <app-page-lead>
       Na fioletowym parapecie siedział żółty balon filozoficznie rozważający
@@ -12,40 +17,39 @@
     </app-page-lead>
 
     <div class="mb-8">
-      <app-search [(value)]="this.blogService.filter" />
+      <app-search [(value)]="this.blogService.textFilter" />
     </div>
-
     <div class="mb-8 flex flex-wrap items-stretch justify-evenly gap-8">
-      @for (post of this.blogService.page(); track post.id) {
+      @for (article of this.blogService.page(); track article.id) {
         <div
           class="card card-sm bg-base-100 rounded-none lg:w-md xl:w-xl 2xl:w-md"
         >
           <figure>
-            <a [routerLink]="`/blog/${post.id}`" class="w-full">
+            <a [routerLink]="`/blog/${article.path}`" class="w-full">
               <img
-                [src]="post.image.url"
-                [alt]="post.image.alt"
+                [src]="article.image.url"
+                [alt]="article.image.alt"
                 class="h-75 w-full object-cover"
               />
             </a>
           </figure>
           <div class="card-body">
-            <a [routerLink]="`/blog/${post.id}`">
+            <a [routerLink]="`/blog/${article.path}`">
               <h2 class="card-title">
-                {{ post.title }}
+                {{ article.title }}
               </h2>
             </a>
 
             <p class="mb-2 text-gray-500">
-              {{ post.created | date: "longDate" }}
+              {{ article.created | date: "longDate" }}
             </p>
 
             <p>
-              {{ post.lead }}
+              {{ article.lead }}
             </p>
 
             <div class="card-actions justify-end">
-              <a class="text-gray-500" [routerLink]="`/blog/${post.id}`">
+              <a class="text-gray-500" [routerLink]="`/blog/${article.path}`">
                 Czytaj <fa-icon [icon]="faAnglesRight" />
               </a>
             </div>
@@ -53,7 +57,6 @@
         </div>
       }
     </div>
-
     <div class="mb-4">
       <app-paginator
         [pageCount]="this.blogService.pageCount()"
