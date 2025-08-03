@@ -1,7 +1,11 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-import { getAuth, provideAuth } from '@angular/fire/auth';
+import {
+  getFirestore,
+  provideFirestore,
+  connectFirestoreEmulator,
+} from '@angular/fire/firestore';
+import { connectAuthEmulator, getAuth, provideAuth } from '@angular/fire/auth';
 import {
   provideClientHydration,
   withEventReplay,
@@ -9,6 +13,11 @@ import {
 import { provideRouter } from '@angular/router';
 import { environment } from '../environments/environment';
 import { routes } from './app.routes';
+import {
+  connectStorageEmulator,
+  getStorage,
+  provideStorage,
+} from '@angular/fire/storage';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -25,7 +34,20 @@ export const appConfig: ApplicationConfig = {
         appId: environment.firebase_appId,
       }),
     ),
-    provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore()),
+    provideAuth(() => {
+      const auth = getAuth();
+      connectAuthEmulator(auth, 'http://127.0.0.1:5101');
+      return auth;
+    }),
+    provideFirestore(() => {
+      const firestore = getFirestore();
+      connectFirestoreEmulator(firestore, '127.0.0.1', 5102);
+      return firestore;
+    }),
+    provideStorage(() => {
+      const storage = getStorage();
+      connectStorageEmulator(storage, '127.0.0.1', 5103);
+      return storage;
+    }),
   ],
 };
