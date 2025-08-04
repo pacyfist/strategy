@@ -44,8 +44,8 @@ export class BlogService {
         (blogArticle) =>
           ({
             ...blogArticle,
-            created: blogArticle['created'].toDate(),
-          }) as IBlogArticle,
+            // created: blogArticle['created'].toDate(),
+          }) as IArticle,
       );
     }),
   );
@@ -97,14 +97,9 @@ export class BlogService {
   }
 }
 
-interface IBlogArticle {
+interface IArticle {
   id: string;
   path: string;
-  image: {
-    url: string;
-    alt: string;
-  };
   title: string;
   lead: string;
-  created: Date;
 }

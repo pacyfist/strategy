@@ -11,63 +11,80 @@
       się na treści, które nie mają sensu, ale mają duszę.
     </app-page-lead>
 
+    <label for="fileUpload">Choose a File</label>
+    <input id="fileUpload" type="file" #upload />
+    <button (click)="uploadFile(upload)">Upload</button>
+
+    <div class="divider"></div>
+
+    @for (img of this.images(); track img) {
+      <p>{{ img }}</p>
+    }
+
+    <div class="divider"></div>
+
     <!-- Form to Add Article -->
     <div class="card border-base-300 border">
       <div class="card-body">
         <h2 class="card-title">Nowy artykuł</h2>
-        <div class="flex flex-col gap-4">
+        <form
+          class="flex flex-col gap-4"
+          [formGroup]="form"
+          (ngSubmit)="addArticle()"
+        >
           <input
             type="text"
+            formControlName="title"
             placeholder="Tytuł Artykułu"
             class="input input-bordered w-full"
           />
           <input
             type="text"
-            placeholder="Ścieżka Artykułu(e.g., /article-slug)"
+            formControlName="path"
+            placeholder="Ścieżka Artykułu(np /witaj-swiecie)"
             class="input input-bordered w-full"
           />
           <textarea
             placeholder="Zajawka"
+            formControlName="lead"
             class="textarea textarea-bordered w-full md:col-span-2"
           ></textarea>
 
-          <input type="datetime-local" class="input input-bordered w-full" />
-
-          <button class="btn btn-primary">Add Article</button>
-        </div>
+          <button class="btn btn-primary" [disabled]="!form.valid">
+            Dodaj Artykuł
+          </button>
+        </form>
       </div>
     </div>
 
     <div class="overflow-x-auto">
       <table class="table-zebra table w-full">
         <thead>
-          <tr class="">
-            <th class="text-left">Tutył</th>
-            <th class="text-left">Ścieżka</th>
-            <th class="text-left">Zajawka</th>
-            <th class="text-left">Data Publikacji</th>
+          <tr>
+            <th class="w-max text-left">Artykuły</th>
             <th class="text-center">Akcje</th>
           </tr>
         </thead>
         <tbody id="articleTableBody">
-          @for (post of this.blogService.page(); track post.id) {
+          @for (article of this.blogService.blogArticles(); track article.id) {
             <tr>
-              <td class="max-w-xs">
-                <span class="block max-w-xs truncate">{{ post.title }}</span>
+              <td class="flex flex-col">
+                <span class="block max-w-xs truncate">{{ article.title }}</span>
+                <span class="block max-w-xs truncate">{{ article.path }}</span>
+                <span class="block max-w-md truncate">{{ article.lead }}</span>
               </td>
-              <td class="max-w-xs">
-                <span class="block max-w-xs truncate">{{ post.id }}</span>
-              </td>
-              <td class="max-w-md">
-                <span class="block max-w-md truncate">{{ post.lead }}</span>
-              </td>
-              <td></td>
               <td class="text-center">
                 <a
                   class="btn btn-error btn-sm"
-                  [routerLink]="`/blog/${post.id}/edit`"
+                  [routerLink]="`/blog/${article.id}/edit`"
                   >Edit</a
                 >
+                <button
+                  class="btn btn-error btn-sm"
+                  (click)="delArticle(article.id)"
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           }

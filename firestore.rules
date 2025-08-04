@@ -2,18 +2,21 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-  
+
   function isUserAdmin(){
     return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin;
   }
-  
-    match /blogs/{blogId} {
-      allow read;
-    }
-    match /blogs/{blogId}/sections/{sectionId} {
+
+    match /blog/{blogId} {
       allow read;
       allow write: if isUserAdmin();
     }
+    match /blogData/{blogId} {
+      allow read;
+      allow write: if isUserAdmin();
+    }
+
+
     match /books/{bookId} {
       allow read;
       //allow write: if request.auth.uid != null
