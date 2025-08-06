@@ -25,13 +25,13 @@
           class="card card-sm bg-base-100 rounded-none lg:w-md xl:w-xl 2xl:w-md"
         >
           <figure>
-            <a [routerLink]="`/blog/${article.path}`" class="w-full">
+            <!-- <a [routerLink]="`/blog/${article.path}`" class="w-full">
               <img
                 [src]="article.image.url"
                 [alt]="article.image.alt"
                 class="h-75 w-full object-cover"
               />
-            </a>
+            </a> -->
           </figure>
           <div class="card-body">
             <a [routerLink]="`/blog/${article.path}`">
@@ -40,9 +40,9 @@
               </h2>
             </a>
 
-            <p class="mb-2 text-gray-500">
+            <!-- <p class="mb-2 text-gray-500">
               {{ article.created | date: "longDate" }}
-            </p>
+            </p> -->
 
             <p>
               {{ article.lead }}

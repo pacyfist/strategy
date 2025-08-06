@@ -19,18 +19,18 @@ export const routes: Routes = [
   {
     path: 'blog/edit',
     loadComponent: () =>
-      import('./pages/blog/blog-list-edit/blog-list-edit.component').then(
+      import('./pages/blog/edit/blog-list-edit/blog-list-edit.component').then(
         (i) => i.BlogListEditComponent,
       ),
   },
-  { path: 'blog/:id', component: BlogPageComponent },
   {
-    path: 'blog/:id/edit',
+    path: 'blog/edit/:id',
     loadComponent: () =>
-      import('./pages/blog/blog-page-edit/blog-page-edit.component').then(
+      import('./pages/blog/edit/blog-page-edit/blog-page-edit.component').then(
         (i) => i.BlogPageEditComponent,
       ),
   },
+  { path: 'blog/:id', component: BlogPageComponent },
   { path: 'books', component: BookListComponent },
   { path: 'books/:id', component: BookPageComponent },
   { path: 'privacy', component: PrivacyPageComponent },

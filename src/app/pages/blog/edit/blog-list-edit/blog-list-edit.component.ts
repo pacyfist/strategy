@@ -1,16 +1,16 @@
 import { Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { PageLeadComponent } from '../../../components/page-lead/page-lead.component';
-import { PageTitleComponent } from '../../../components/page-title/page-title.component';
-import { BlogEditService } from '../../../services/blog-edit.service';
-import { BlogService } from '../../../services/blog.service';
+import { PageLeadComponent } from '../../../../components/page-lead/page-lead.component';
+import { PageTitleComponent } from '../../../../components/page-title/page-title.component';
+import { BlogEditService } from '../../../../services/blog-edit.service';
+import { BlogService } from '../../../../services/blog.service';
 import {
   FormGroup,
   FormControl,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { ImageService } from '../../../services/image.service';
+import { ImageService } from '../../../../services/image.service';
 import { AsyncPipe } from '@angular/common';
 
 @Component({

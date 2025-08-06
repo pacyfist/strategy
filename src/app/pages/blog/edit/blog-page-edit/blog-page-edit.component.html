@@ -1,14 +1,46 @@
 <div class="container mx-auto">
   <div class="bg-base-100 p-4">
+    <div class="card border-base-300 border">
+      <div class="card-body">
+        <form class="flex flex-col gap-4" [formGroup]="form">
+          <input
+            type="text"
+            formControlName="title"
+            class="input input-bordered w-full"
+          />
+          <input
+            type="text"
+            formControlName="path"
+            class="input input-bordered w-full"
+          />
+          <textarea
+            formControlName="lead"
+            class="textarea textarea-bordered w-full md:col-span-2"
+          ></textarea>
+
+          <quill-editor
+            class="w-full"
+            [modules]="this.modules"
+            ctheme="snow"
+            formControlName="html"
+          />
+
+          <button class="btn btn-primary" [disabled]="!form.valid">
+            Zapisz
+          </button>
+        </form>
+      </div>
+    </div>
+
     <app-page-title>
-      {{ metadata()?.title }}
+      <!-- {{ metadata()?.title }} -->
     </app-page-title>
 
     <app-page-lead>
-      {{ metadata()?.lead }}
+      <!-- {{ metadata()?.lead }} -->
     </app-page-lead>
     <div class="flex flex-col gap-4">
-      @for (section of sections(); track section.index) {
+      <!-- @for (section of sections(); track section.index) {
       <div class="card border-base-300 rounded-sm border">
         <div class="card-body">
           <div class="">
@@ -43,14 +75,14 @@
 
         </div>
       </div>
-      }
+      } -->
 
-      <div class="text-center">
+      <!-- <div class="text-center">
         <a class="btn btn-primary" (click)="addSection()">+ Dodaj Sekcję</a>
         <a class="btn btn-primary" (click)="
             this.blogService.fixArticleSectionIndexes(this.metadata()?.id ?? '')
           ">+ indeksy</a>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

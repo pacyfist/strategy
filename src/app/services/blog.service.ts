@@ -10,7 +10,10 @@ import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import {
   collection,
   collectionData,
+  doc,
   Firestore,
+  getDoc,
+  getDocs,
   query,
   where,
 } from '@angular/fire/firestore';
@@ -95,11 +98,33 @@ export class BlogService {
       });
     });
   }
+
+  async getArticleByPath(path: string) {
+    const articlesSnapshot = await getDocs(
+      query(collection(this.firestore, '/blog'), where('path', '==', path)),
+    );
+    if (articlesSnapshot.empty) {
+      return null;
+    }
+    const docSnap = articlesSnapshot.docs[0];
+    const article = { ...docSnap.data() } as IArticle;
+
+    const dataDoc = await getDoc(doc(this.firestore, `/blogData`, docSnap.id));
+    return {
+      article,
+      data: dataDoc.data() as IArticleData,
+    };
+  }
 }
 
 interface IArticle {
   id: string;
+  lang: string;
   path: string;
   title: string;
   lead: string;
+}
+
+interface IArticleData {
+  html: string;
 }

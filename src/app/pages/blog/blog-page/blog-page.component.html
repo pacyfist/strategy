@@ -1,19 +1,5 @@
 <div class="container mx-auto">
   <div class="bg-base-100 p-4">
-    <app-page-title>
-      {{ metadata()?.title }}
-    </app-page-title>
 
-    <app-page-lead>
-      {{ metadata()?.lead }}
-    </app-page-lead>
-
-    @for (section of sections(); track section.index) {
-      <h2>{{ section.title }}</h2>
-      
-      <section>
-        <quill-view-html [content]="section.html" format="text" theme="snow" />
-      </section>
-    }
   </div>
 </div>

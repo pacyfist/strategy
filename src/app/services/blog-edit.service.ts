@@ -10,15 +10,16 @@ import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import {
   addDoc,
   collection,
-  collectionData,
   deleteDoc,
   doc,
   Firestore,
+  getDoc,
+  getDocs,
   query,
   setDoc,
   where,
 } from '@angular/fire/firestore';
-import { map, switchMap } from 'rxjs';
+import { map, switchMap, firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -44,6 +45,18 @@ export class BlogEditService {
   async delArticle(id: string) {
     await deleteDoc(doc(this.firestore, `/blog`, id));
     await deleteDoc(doc(this.firestore, `/blogData`, id));
+  }
+
+  async getArticleById(id: string) {
+    const articleSnapshot = await getDoc(doc(this.firestore, `/blog`, id));
+    const articleDataSnapshot = await getDoc(
+      doc(this.firestore, `/blogData`, id),
+    );
+
+    return {
+      article: articleSnapshot.data() as IArticle,
+      data: articleDataSnapshot.data() as IArticleData,
+    };
   }
 }
 
