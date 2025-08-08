@@ -33,7 +33,7 @@ export class BlogService {
   readonly pageNumber = signal<number>(0);
   readonly pageSize = signal<number>(6);
 
-  private readonly blogsPages$ = combineLatest([
+  private readonly blogsArticles$ = combineLatest([
     toObservable(this.languageFilter),
     toObservable(this.auth.isUserAdmin),
   ]).pipe(
@@ -57,7 +57,7 @@ export class BlogService {
     }),
   );
 
-  readonly blogArticles = toSignal(this.blogsPages$);
+  readonly blogArticles = toSignal(this.blogsArticles$);
 
   private readonly filteredPages = computed(() => {
     const search = this.textFilter().toLowerCase();
