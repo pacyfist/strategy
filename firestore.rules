@@ -3,19 +3,28 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-  function isUserAdmin(){
-    return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin;
-  }
+    function isUserAdmin() {
+      return
+        request.auth != null &&
+        request.auth.uid != null &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
+    }
+
+    function isPublished(resource) {
+      return
+        resource.data != null &&
+        resource.data.published != null &&
+        resource.data.published <= request.time;
+    }
 
     match /blog/{blogId} {
-      allow read;
+      allow read: if isUserAdmin() || isPublished(resource);
       allow write: if isUserAdmin();
     }
     match /blogData/{blogId} {
-      allow read;
+      allow read: if  isUserAdmin() || isPublished(get(/databases/$(database)/documents/blog/$(blogId)));
       allow write: if isUserAdmin();
     }
-
 
     match /books/{bookId} {
       allow read;
@@ -23,7 +32,6 @@ service cloud.firestore {
     }
     match /users/{userId} {
       allow read: if request.auth.uid == userId;
-
     }
   }
 }

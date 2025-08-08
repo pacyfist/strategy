@@ -36,7 +36,7 @@ export class AuthService {
 
   readonly isUserLoggedOut = computed(() => this.user() === null);
   readonly isUserLoggedIn = computed(() => !!this.user());
-  readonly isUserAdmin = computed(() => this.user()?.isAdmin);
+  readonly isUserAdmin = computed(() => this.user()?.isAdmin ?? false);
 
   readonly useDisplayName = computed(() => this.user()?.email);
 

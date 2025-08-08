@@ -17,7 +17,8 @@ import {
   query,
   where,
 } from '@angular/fire/firestore';
-import { map, switchMap } from 'rxjs';
+import { combineLatest, map, switchMap } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -25,29 +26,42 @@ import { map, switchMap } from 'rxjs';
 export class BlogService {
   private readonly firestore = inject(Firestore);
 
+  private readonly auth = inject(AuthService);
+
   readonly languageFilter = signal('pl');
   readonly textFilter = signal<string>('');
   readonly pageNumber = signal<number>(0);
   readonly pageSize = signal<number>(6);
 
-  private readonly blogsPages$ = toObservable(this.languageFilter).pipe(
-    switchMap((language) =>
-      collectionData(
-        query(
-          collection(this.firestore, '/blog'),
-          where('lang', '==', language),
-        ),
-        {
-          idField: 'id',
-        },
-      ),
+  private readonly blogsPages$ = combineLatest([
+    toObservable(this.languageFilter),
+    toObservable(this.auth.isUserAdmin),
+  ]).pipe(
+    switchMap(([language, isAdmin]) =>
+      isAdmin
+        ? collectionData(
+            query(
+              collection(this.firestore, '/blog'),
+              where('lang', '==', language),
+            ),
+            {
+              idField: 'id',
+            },
+          )
+        : collectionData(
+            query(
+              collection(this.firestore, '/blog'),
+              where('lang', '==', language),
+              where('published', '<=', new Date()),
+            ),
+            { idField: 'id' },
+          ),
     ),
     map((blogArticles) => {
       return blogArticles.map(
         (blogArticle) =>
           ({
             ...blogArticle,
-            // created: blogArticle['created'].toDate(),
           }) as IArticle,
       );
     }),

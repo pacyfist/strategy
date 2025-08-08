@@ -1,25 +1,12 @@
+import { inject, Injectable } from '@angular/core';
 import {
-  computed,
-  effect,
-  inject,
-  Injectable,
-  signal,
-  untracked,
-} from '@angular/core';
-import { toObservable, toSignal } from '@angular/core/rxjs-interop';
-import {
-  addDoc,
   collection,
   deleteDoc,
   doc,
   Firestore,
   getDoc,
-  getDocs,
-  query,
   setDoc,
-  where,
 } from '@angular/fire/firestore';
-import { map, switchMap, firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -57,6 +44,14 @@ export class BlogEditService {
       article: articleSnapshot.data() as IArticle,
       data: articleDataSnapshot.data() as IArticleData,
     };
+  }
+
+  async publishArticle(id: string, published: Date) {
+    await setDoc(
+      doc(this.firestore, 'blog', id),
+      { published },
+      { merge: true },
+    );
   }
 }
 
