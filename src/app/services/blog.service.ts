@@ -37,26 +37,16 @@ export class BlogService {
     toObservable(this.languageFilter),
     toObservable(this.auth.isUserAdmin),
   ]).pipe(
-    switchMap(([language, isAdmin]) =>
-      isAdmin
-        ? collectionData(
-            query(
-              collection(this.firestore, '/blog'),
-              where('lang', '==', language),
-            ),
-            {
-              idField: 'id',
-            },
-          )
-        : collectionData(
-            query(
-              collection(this.firestore, '/blog'),
-              where('lang', '==', language),
-              where('published', '<=', new Date()),
-            ),
-            { idField: 'id' },
-          ),
-    ),
+    switchMap(([language, isAdmin]) => {
+      return collectionData(
+        query(
+          collection(this.firestore, '/blog'),
+          where('lang', '==', language),
+          ...(!isAdmin ? [where('published', '<=', new Date())] : []),
+        ),
+        { idField: 'id' },
+      );
+    }),
     map((blogArticles) => {
       return blogArticles.map(
         (blogArticle) =>
