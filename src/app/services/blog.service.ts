@@ -42,7 +42,7 @@ export class BlogService {
         query(
           collection(this.firestore, '/blog'),
           where('lang', '==', language),
-          ...(!isAdmin ? [where('published', '<=', new Date())] : []),
+          ...(isAdmin ? [] : [where('published', '<=', new Date())]),
         ),
         { idField: 'id' },
       );
