@@ -1,6 +1,5 @@
 import { inject, Injectable } from '@angular/core';
 import {
-  collection,
   deleteDoc,
   doc,
   Firestore,
@@ -12,19 +11,17 @@ import {
   providedIn: 'root',
 })
 export class BlogEditService {
-  readonly firestore = inject(Firestore);
+  private readonly firestore = inject(Firestore);
 
-  readonly blogCollection = collection(this.firestore, '/blog');
-  readonly blogDataCollection = collection(this.firestore, '/blogData');
-
-  async addArticle(id: string, article: IArticle, data: IArticleData) {
-    await setDoc(doc(this.firestore, 'blog', id), {
+  async addArticle(article: IArticle, data: IArticleData) {
+    const guid = crypto.randomUUID();
+    await setDoc(doc(this.firestore, 'blog', guid), {
       lang: article.lang,
       path: article.path,
       title: article.title,
       lead: article.lead,
     } as IArticle);
-    await setDoc(doc(this.firestore, 'blogData', id), {
+    await setDoc(doc(this.firestore, 'blogData', guid), {
       html: data.html,
     } as IArticleData);
   }
