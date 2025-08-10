@@ -27,17 +27,20 @@ export class ImageService {
   private readonly firestore = inject(Firestore);
   private readonly storage = inject(Storage);
 
-  async getBlogImages(pageSize: number, lastDoc?: QueryDocumentSnapshot<any>) {
+  async getBlogImages(
+    pageSize: number,
+    lastDoc?: QueryDocumentSnapshot<any>,
+  ): Promise<BlogImageResult> {
     const snapshot = await getDocs(
       query(
-        collection(this.firestore, 'blogImage'),
+        collection(this.firestore, 'blogImages'),
         orderBy('uploadedAt', 'desc'),
         limit(pageSize),
         ...(lastDoc ? [startAfter(lastDoc)] : []),
       ),
     );
     return {
-      items: snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })),
+      items: snapshot.docs.map((doc) => ({ ...doc.data() }) as BlogImage),
       lastDoc:
         snapshot.docs.length > 0
           ? snapshot.docs[snapshot.docs.length - 1]
@@ -51,7 +54,7 @@ export class ImageService {
     const storageRef = ref(this.storage, `blog/${guid}`);
     await uploadBytes(storageRef, file);
     const url = await getDownloadURL(storageRef);
-    await addDoc(collection(this.firestore, 'blogImage'), {
+    await addDoc(collection(this.firestore, 'blogImages'), {
       title,
       alt,
       url,
@@ -61,9 +64,21 @@ export class ImageService {
 
   async deleteBlogImage(docId: string, guid: string): Promise<void> {
     const storageRef = ref(this.storage, `blog/${guid}`);
-    const docRef = doc(this.firestore, `blogImage/${docId}`);
+    const docRef = doc(this.firestore, `blogImages/${docId}`);
 
     await deleteObject(storageRef);
     await deleteDoc(docRef);
   }
+}
+
+export interface BlogImage {
+  url: string;
+  title: string;
+  alt: string;
+  uploadedAt: Date | string;
+}
+
+export interface BlogImageResult {
+  items: BlogImage[];
+  lastDoc: QueryDocumentSnapshot<any> | null;
 }
