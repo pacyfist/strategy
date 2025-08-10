@@ -1,4 +1,3 @@
-import { DatePipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
@@ -16,7 +15,6 @@ import { BlogService } from '../../../services/blog.service';
 @Component({
   imports: [
     RouterLink,
-    DatePipe,
     FaIconComponent,
     PaginatorComponent,
     SearchComponent,
