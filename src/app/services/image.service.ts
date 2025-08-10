@@ -1,38 +1,69 @@
-import { inject, Injectable, resource } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import {
+  Firestore,
+  QueryDocumentSnapshot,
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  limit,
+  orderBy,
+  query,
+  startAfter,
+} from '@angular/fire/firestore';
 import {
   Storage,
-  listAll,
+  deleteObject,
+  getDownloadURL,
   ref,
   uploadBytes,
-  getDownloadURL,
-  list,
 } from '@angular/fire/storage';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ImageService {
-  readonly storage = inject(Storage);
+  private readonly firestore = inject(Firestore);
+  private readonly storage = inject(Storage);
 
-  readonly blogImagesResource = resource({
-    loader: async () => {
-      const results = await list(ref(this.storage, 'blog'), {
-        maxResults: 1,
-      });
-      const downloadUrls = results.items.map(
-        async (i) => await getDownloadURL(i),
-      );
-      return Promise.all(downloadUrls);
-    },
-  });
+  async getBlogImages(pageSize: number, lastDoc?: QueryDocumentSnapshot<any>) {
+    const snapshot = await getDocs(
+      query(
+        collection(this.firestore, 'blogImage'),
+        orderBy('uploadedAt', 'desc'),
+        limit(pageSize),
+        ...(lastDoc ? [startAfter(lastDoc)] : []),
+      ),
+    );
+    return {
+      items: snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })),
+      lastDoc:
+        snapshot.docs.length > 0
+          ? snapshot.docs[snapshot.docs.length - 1]
+          : null,
+    };
+  }
 
-  uploadBlogImage(images: FileList) {
-    for (let i = 0; i < images.length; i++) {
-      const file = images.item(i);
-      if (file) {
-        const storageRef = ref(this.storage, `blog/${file.name}`);
-        uploadBytes(storageRef, file);
-      }
-    }
+  async uploadBlogImage(file: File, title: string, alt: string): Promise<void> {
+    if (!file) return;
+    const guid = crypto.randomUUID();
+    const storageRef = ref(this.storage, `blog/${guid}`);
+    await uploadBytes(storageRef, file);
+    const url = await getDownloadURL(storageRef);
+    await addDoc(collection(this.firestore, 'blogImage'), {
+      title,
+      alt,
+      url,
+      uploadedAt: new Date(),
+    });
+  }
+
+  async deleteBlogImage(docId: string, guid: string): Promise<void> {
+    const storageRef = ref(this.storage, `blog/${guid}`);
+    const docRef = doc(this.firestore, `blogImage/${docId}`);
+
+    await deleteObject(storageRef);
+    await deleteDoc(docRef);
   }
 }
